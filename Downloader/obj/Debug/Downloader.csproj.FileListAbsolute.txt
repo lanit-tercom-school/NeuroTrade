@@ -1,0 +1,5 @@
+C:\Users\ALEX\Documents\Visual Studio 2012\Projects\Downloader\Downloader\bin\Debug\Downloader.exe
+C:\Users\ALEX\Documents\Visual Studio 2012\Projects\Downloader\Downloader\bin\Debug\Downloader.pdb
+C:\Users\ALEX\Documents\Visual Studio 2012\Projects\Downloader\Downloader\obj\Debug\Downloader.csprojResolveAssemblyReference.cache
+C:\Users\ALEX\Documents\Visual Studio 2012\Projects\Downloader\Downloader\obj\Debug\Downloader.exe
+C:\Users\ALEX\Documents\Visual Studio 2012\Projects\Downloader\Downloader\obj\Debug\Downloader.pdb
