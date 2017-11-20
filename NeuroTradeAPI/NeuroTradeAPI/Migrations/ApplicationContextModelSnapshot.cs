@@ -20,18 +20,26 @@ namespace NeuroTradeAPI.Migrations
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452");
 
-            modelBuilder.Entity("NeuroTradeAPI.TradeRecord", b =>
+            modelBuilder.Entity("NeuroTradeAPI.Candle", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Amount");
+                    b.Property<string>("Alias");
 
-                    b.Property<float>("Price");
+                    b.Property<float>("Close");
+
+                    b.Property<float>("High");
+
+                    b.Property<float>("Low");
+
+                    b.Property<float>("Open");
+
+                    b.Property<int>("Volume");
 
                     b.HasKey("Id");
 
-                    b.ToTable("TradeRecords");
+                    b.ToTable("Quotes");
                 });
 #pragma warning restore 612, 618
         }

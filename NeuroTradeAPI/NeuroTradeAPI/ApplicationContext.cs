@@ -4,7 +4,7 @@ namespace NeuroTradeAPI
 {
     public class ApplicationContext : DbContext
     {
-        public DbSet<TradeRecord> TradeRecords { get; set; }
+        public DbSet<Candle> Quotes { get; set; }
  
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

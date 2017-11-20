@@ -6,36 +6,37 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace NeuroTradeAPI.Controllers
 {
-    [Route("api/[controller]")]
-    public class ValuesController : Controller
+    [Route("api/v0/[controller]")]
+    public class QuotesController : Controller
     {
-        // GET api/values
+        // GET /quotes
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<string> Get()    //for humans
         {
-            return new string[] {"value1", "value2"};
+            return new string[] {"SPFB.RTS-12.17 | 2017.11.01 | 10:30:00 | 1234 | 1243 | 1212 | 1221",
+                                 "SPFB.RTS-12.17 | 2017.11.01 | 11:00:00 | 1243 | 1234 | 1200 | 1233"};
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        // GET api/quotes/5
+        [HttpGet("{id1-id2}")]
+        public string Get(int id1, int id2)
         {
-            return "value";
+            return string.Format("{0} candles", id2 - id1 + 1);
         }
 
-        // POST api/values
+        // POST api/quotes
         [HttpPost]
         public void Post([FromBody] string value)
         {
         }
 
-        // PUT api/values/5
+        // PUT api/quotes/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/values/5
+        // DELETE api/quotes/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
