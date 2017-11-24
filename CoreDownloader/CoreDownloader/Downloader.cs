@@ -15,7 +15,10 @@ namespace CoreDownloader
         //private IQuoteStorage _storage { get; set; }
         private MD5 md5Hash = MD5.Create();
         HashSet<string> hashUrls = new HashSet<string>();
-
+        private object _lockDownload = new object();
+        private object _lockLists = new object();
+        private object _lockScedule = new object();
+        
         private ScheduledJobRegistry _registry = new ScheduledJobRegistry();
         List<Task> runningTasks = new List<Task>();
 
@@ -28,7 +31,10 @@ namespace CoreDownloader
         {
             Task t1 = new Task(() => AddNewTask(dTask));
             t1.Start();
-            runningTasks.Add(t1);
+            lock (_lockLists)
+            {
+                runningTasks.Add(t1);
+            }
             return runningTasks;
         }
 
@@ -39,8 +45,11 @@ namespace CoreDownloader
             if (!hashUrls.Contains(hname))
             {
                 Console.WriteLine("Adding task to scheduler " + hname);
-                hashUrls.Add(hname);
-                JobManager.AddJob(() => DownloadData(dTask), (s) => s.WithName(hname).ToRunNow());
+                lock (_lockScedule)
+                {
+                    hashUrls.Add(hname);
+                    JobManager.AddJob(() => DownloadData(dTask), (s) => s.WithName(hname).ToRunNow());
+                }
                 JobManager.JobEnd += (info) =>
                 {
                     if (info.Name.Equals(hname))
@@ -59,9 +68,14 @@ namespace CoreDownloader
 
         private void DownloadData(DownloadigTask dTask)
         {
-            WebClient wb = new WebClient();
-            Console.WriteLine("Start fetching data");
-            string result = wb.DownloadString(dTask.url);
+            WebClient wb;
+            string result;
+            wb = new WebClient();
+            lock (_lockDownload)
+            {
+                Console.WriteLine("Start fetching data");
+                result = wb.DownloadString(dTask.url);
+            }
             Console.WriteLine("Data fetched");
             ValidateData(result, dTask);
         }
