@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
@@ -14,78 +16,75 @@ namespace CoreDownloader
     {
         //private IQuoteStorage _storage { get; set; }
         private MD5 md5Hash = MD5.Create();
-        HashSet<string> hashUrls = new HashSet<string>();
-        private object _lockDownload = new object();
-        private object _lockLists = new object();
+        volatile HashSet<string> hashUrls = new HashSet<string>();
         private object _lockScedule = new object();
+        private object _lockHashes = new object();
+
+        public delegate void GetResponseDelegate(DownloadingResult downloadingResult);
         
         private ScheduledJobRegistry _registry = new ScheduledJobRegistry();
-        List<Task> runningTasks = new List<Task>();
 
         public Downloader()
         {
             JobManager.Initialize(_registry);
         }
         
-        public List<Task> AddTask(DownloadigTask dTask, bool another = false)
+        public void AddTask(DownloadingTask dTask, GetResponseDelegate callback)
         {
-            Task t1 = new Task(() => AddNewTask(dTask));
-            t1.Start();
-            lock (_lockLists)
+            string hash = GetMd5StringHash(dTask.url);
+            if (! hashUrls.Contains(hash))
             {
-                runningTasks.Add(t1);
-            }
-            return runningTasks;
-        }
-
-        private void AddNewTask(DownloadigTask dTask)
-        {
-            bool done = false;
-            string hname = GetMd5StringHash(dTask.url);
-            if (!hashUrls.Contains(hname))
-            {
-                Console.WriteLine("Adding task to scheduler " + hname);
-                lock (_lockScedule)
+                lock (_lockHashes)
                 {
-                    hashUrls.Add(hname);
-                    JobManager.AddJob(() => DownloadData(dTask), (s) => s.WithName(hname).ToRunNow());
+                    hashUrls.Add(hash);
+                }
+                DownloadingResult dResult = new DownloadingResult();
+                dResult.name = hash;
+                lock (_lockScedule) // this one may be unneccessary, but idk how this scheduler works inside
+                {
+                    JobManager.AddJob(() => DownloadAndPass(dTask, dResult), schedule => schedule.WithName(hash).ToRunOnceIn(dTask.delay).Milliseconds());    
                 }
                 JobManager.JobEnd += (info) =>
                 {
-                    if (info.Name.Equals(hname))
+                    if (info.Name.Equals(hash))
                     {
-                        Console.WriteLine(info.Name + " task done");
-                        done = true;
-                    }    
+                        callback(dResult);
+                    }
                 };
-                while (!done)
-                {
-                    Thread.Sleep(300);
-                }
             }
             
         }
 
-        private void DownloadData(DownloadigTask dTask)
+        private void DownloadAndPass(DownloadingTask dTask, DownloadingResult dResult)
         {
-            WebClient wb;
-            string result;
-            wb = new WebClient();
-            lock (_lockDownload)
+            HttpClient httpClient = new HttpClient();
+            using (Stream resultStream = httpClient.GetStreamAsync(dTask.url).Result)
             {
-                Console.WriteLine("Start fetching data");
-                result = wb.DownloadString(dTask.url);
+                if (ValidateData(resultStream, dTask, dResult))
+                {
+                    PassData(dTask, dResult);
+                }
             }
-            Console.WriteLine("Data fetched");
-            ValidateData(result, dTask);
         }
 
-        private void ValidateData(string result, DownloadigTask dTask)
+        private void PassData(DownloadingTask dTask, DownloadingResult dResult)
+        {
+            /*passing data to database*/
+        }
+
+        private bool ValidateData(Stream resultStream, DownloadingTask dTask, DownloadingResult dResult)
         {
             Console.WriteLine("Validating result");
-            /*some awesom validating methods*/
-            dTask.result = result;
-            Console.WriteLine(result);
+            /*some awesom validating methods, writind errors to dResult*/
+            int c;
+            /* writing result to a console just in testing and development purposes*/
+            do
+            {
+                c = resultStream.ReadByte();
+                Console.Write(Convert.ToChar(c));
+                
+            } while (c != -1);
+            return true;
         }
         
         private string GetMd5StringHash(string input)
@@ -102,9 +101,7 @@ namespace CoreDownloader
         
     }
     
-    
-    
-    
+        
     public class ScheduledJobRegistry : Registry
     {
         public ScheduledJobRegistry()
@@ -114,17 +111,31 @@ namespace CoreDownloader
         }
     }
 
-    public class DownloadigTask
+    public class DownloadingTask
     {
         public string url;
         public string result = String.Empty;
+        public int delay;
 
-        public DownloadigTask(string url)
+        public DownloadingTask(string url, int delay)
         {
             this.url = url;
+            if (delay < 0)
+            {
+                this.delay = 0;
+            }
+            else
+            {
+                this.delay = delay;
+            }
         }
     }
     
-    
-    
+    /* holds result and errors happened to pass to the calling context*/
+    public class DownloadingResult
+    {
+        public string name;
+        public bool success = true;
+        public string error;
+    }
 }
