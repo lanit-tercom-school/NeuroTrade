@@ -11,8 +11,8 @@ using System;
 namespace NeuroTradeAPI.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20171113221325_initial")]
-    partial class initial
+    [Migration("20171127163530_re-init")]
+    partial class reinit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,18 +21,20 @@ namespace NeuroTradeAPI.Migrations
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452");
 
-            modelBuilder.Entity("NeuroTradeAPI.TradeRecord", b =>
+            modelBuilder.Entity("NeuroTradeAPI.Batch", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("BatchId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Amount");
+                    b.Property<string>("Alias");
 
-                    b.Property<float>("Price");
+                    b.Property<TimeSpan>("Interval");
 
-                    b.HasKey("Id");
+                    b.Property<DateTime>("Timestamp");
 
-                    b.ToTable("Users");
+                    b.HasKey("BatchId");
+
+                    b.ToTable("Batch");
                 });
 #pragma warning restore 612, 618
         }

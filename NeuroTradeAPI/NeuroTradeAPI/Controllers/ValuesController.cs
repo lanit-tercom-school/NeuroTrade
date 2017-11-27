@@ -18,10 +18,10 @@ namespace NeuroTradeAPI.Controllers
         }
 
         // GET api/quotes/5
-        [HttpGet("{id1-id2}")]
-        public string Get(int id1, int id2)
+        [HttpGet("{id}")]
+        public string Get(int id)
         {
-            return string.Format("{0} candles", id2 - id1 + 1);
+            return string.Format("Candle {0}", id);
         }
 
         // POST api/quotes

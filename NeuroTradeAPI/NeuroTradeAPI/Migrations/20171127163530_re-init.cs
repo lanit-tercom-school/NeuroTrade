@@ -5,29 +5,30 @@ using System.Collections.Generic;
 
 namespace NeuroTradeAPI.Migrations
 {
-    public partial class initial : Migration
+    public partial class reinit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "Batch",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int4", nullable: false)
+                    BatchId = table.Column<int>(type: "int4", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    Amount = table.Column<int>(type: "int4", nullable: false),
-                    Price = table.Column<float>(type: "float4", nullable: false)
+                    Alias = table.Column<string>(type: "text", nullable: true),
+                    Interval = table.Column<TimeSpan>(type: "interval", nullable: false),
+                    Timestamp = table.Column<DateTime>(type: "timestamp", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_Batch", x => x.BatchId);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Batch");
         }
     }
 }

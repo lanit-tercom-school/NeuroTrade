@@ -4,7 +4,8 @@ namespace NeuroTradeAPI
 {
     public class ApplicationContext : DbContext
     {
-        public DbSet<Candle> Quotes { get; set; }
+        public DbSet<Batch> Batches { get; set; }
+        public DbSet<Candle> Candles { get; set; }
  
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
