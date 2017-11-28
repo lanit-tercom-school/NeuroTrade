@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace NeuroTradeAPI
 {
@@ -6,10 +7,13 @@ namespace NeuroTradeAPI
     {
         public DbSet<Batch> Batches { get; set; }
         public DbSet<Candle> Candles { get; set; }
- 
+
+        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
+        {
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=nt_db;Username=nt_dev;Password=weakpassword");
         }
     }
 }
