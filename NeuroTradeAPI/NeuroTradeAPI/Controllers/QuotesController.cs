@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,19 +10,49 @@ namespace NeuroTradeAPI.Controllers
     [Route("api/v0/[controller]")]
     public class QuotesController : Controller
     {
+        private readonly ApplicationContext _context;
+
+        public QuotesController(ApplicationContext context)
+        {
+            _context = context;
+        }
+
         // GET /api/v0/quotes
         [HttpGet]
-        public IEnumerable<string> Get()    //for humans
+        public ActionResult Get()
         {
-            return new string[] {"SPFB.RTS-12.17 | 2017.11.01 | 10:30:00 | 1234 | 1243 | 1212 | 1221",
-                                 "SPFB.RTS-12.17 | 2017.11.01 | 11:00:00 | 1243 | 1234 | 1200 | 1233"};
+            var batches = _context.Batches;
+            return Json(from batch in batches select new Dictionary<string, object>()
+            {
+                {"id", batch.BatchId},
+                {"Ticker", batch.Alias},
+                {"Start", batch.Timestamp.ToString()},
+                {"Interval", batch.Interval}
+            });
         }
 
         // GET api/v0/quotes/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public ActionResult Get(int id)
         {
-            return string.Format("Candle {0}", id);
+            var b = _context.Batches.Find(id);
+            if (b == null)
+                return NotFound("Batch not found");
+            
+            var batch = _context.Candles.Where(c => c.Batch == b);
+            return Json(new Dictionary<string, object>()
+            {
+                {"Ticker", b.Alias},
+                {"Start", b.Timestamp.ToString()},
+                {"Interval", b.Interval},
+                {
+                    "Candles", 
+                    from c in batch select (new Dictionary<string, object>()
+                    {
+                        {"id",c.CandleId},{"open",c.Open},{"close",c.Close},{"low",c.Low},{"high",c.High},{"volume",c.Volume}
+                    })
+                }
+            });
         }
 
         // POST api/v0/quotes
