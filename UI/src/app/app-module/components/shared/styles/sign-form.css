@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
+
+h2 {
+    text-align: center;
+}
+
+container {
+    padding-top: 80px;
+}
+
+form {
+    margin: auto;
+    width: 380px;
+    background-color: white;
+    padding: 18px;
+    border-radius: 5px;
+    border: 1px solid #d8dee2;
+}
+
+h2 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 300 !important;
+    margin-bottom: 20px;
+}
+
+form > input {
+    margin-bottom: 10px;
+}
