@@ -26,3 +26,11 @@ h2 {
 form > input {
     margin-bottom: 10px;
 }
+
+.bottomText {
+    margin-top: 14px;
+}
+
+.container {
+    min-width: 410px;
+}
