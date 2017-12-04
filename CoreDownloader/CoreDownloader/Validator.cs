@@ -1,41 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 
-namespace Downloader
+namespace CoreDownloader
 {
-    class DataConverter
+    public class Validator
     {
         public List<Data> dataList { get;  } = new List<Data>();
         
         /// <summary>
-        /// to convert data from file to obj Data and add to dataList;
-        /// make sure that the first string of file is names of fields
+        /// to convert data from stream to obj Data and add to dataList;
+        /// make sure that the first string of file is names of fields and separator is ','
         /// example: <TICKER>,<PER>,<DATE>,<TIME>,<LOW>,<CLOSE>,<VOL>
         /// </summary>
-        /// <param name="filePath"> file path </param>
-        /// <param name="separator"> character that separaates fieelds and values </param>
+        ///<param name="stream"></param>
+        /// <param name="dResult"> for some errors that occur duting validation </param>
         /// <exception cref="Exception"> in case of unexpected format of the first string </exception>
-        public void convert(String filePath, char separator)
+        public void Pass(Stream stream, DownloadingResult dResult)
         {
-            FileStream file = new FileStream(filePath, FileMode.Open);
-            StreamReader reader = new StreamReader(file);
+            StreamReader reader = new StreamReader(stream);
 
             string topString = reader.ReadLine();
             
             int[] dataFields = new int[Data.NumberOfFields];
             initializeArr(dataFields, -1);
-            int wordsNumber = initializeFieldsArr(topString, dataFields, separator);
-            
+            int wordsNumber = initializeFieldsArr(topString, dataFields);
+
             if (wordsNumber == 0)
-                throw new Exception("Converting falied: unexpected format of topString");
-            
+            {
+                dResult.error = "Converting falied: unexpected format of topString: " + topString;
+                dResult.success = false;
+                return;
+            }
+
             while (!reader.EndOfStream)
             {
                 string next = reader.ReadLine();
-                string[] value = next.Split(separator);
-                checkAndAdd(dataList, dataFields, value, wordsNumber);
+                string[] value = next.Split(',');
+                checkAndPass(dataList, dataFields, value, wordsNumber, dResult);
             }
             reader.Close();
         }
@@ -51,9 +53,9 @@ namespace Downloader
         /// dataFields[i] = j means i-th field from Data class is j-th in first string</param>
         /// <param name="separator"> char that separeates words </param>
         /// <returns>number of fields in the first string</returns>
-        private int initializeFieldsArr(string topString, int[] dataFields, char separator)
+        private int initializeFieldsArr(string topString, int[] dataFields)
         {
-            string[] splitString = topString.Split(separator);
+            string[] splitString = topString.Split(',');
             int numberOfWords = 0;
             for (int i = 0; i < splitString.Length; i++)
             {
@@ -166,9 +168,9 @@ namespace Downloader
         /// dataFields[i] = j means i-th field from Data class is j-th in value array </param>
         /// <param name="value"> array with input data (may be in an incorrect format) </param>
         /// <param name="wordNumber"> number of words in input data </param>
-        private void checkAndAdd(List<Data> dataList, int[] dataFields, string[] value, int wordNumber)
+        private void checkAndPass(List<Data> dataList, int[] dataFields, string[] value, int wordNumber, DownloadingResult dResult)
         {
-            if (check(dataFields, value, wordNumber))
+            if (check(dataFields, value, wordNumber, dResult))
             {
                 Data toAdd = new Data();
                 toAdd.setSomeOfFields(dataFields, value);
@@ -192,10 +194,14 @@ namespace Downloader
         /// <param name="value"> array with input data (may be in an incorrect format </param>
         /// <param name="wordNumber"> number of words in top string </param>
         /// <returns> true or false depens on result </returns>
-        private bool check(int[] dataFields, string[] value, int wordNumber)
+        private bool check(int[] dataFields, string[] value, int wordNumber, DownloadingResult dResult)
         {
             if (value.Length != wordNumber)
+            {
+                dResult.error = "there are more fields in string with data than in topString";
+                dResult.success = false;
                 return false;
+            }
 
             for (int i = 0; i < dataFields.Length; i++)
             {
@@ -204,32 +210,37 @@ namespace Downloader
                     // for Ticker and Per
                     if (i < 2 && !containsAnyChars(value[dataFields[i]]))
                     {
-                        Console.WriteLine("ticker or par");
+                        dResult.error = "wrong format of Ticker or Par: " + value[dataFields[i]];
+                        dResult.success = false;
                         return false;
                     }
                     // for Date
                     if (i == 2 && !checkDate(value[dataFields[i]]))
                     {
-                        Console.WriteLine("date");                    
+                        dResult.error = "wrong format of Date: " + value[dataFields[i]];
+                        dResult.success = false;
                         return false;
                     }
                     // for Time
                     if (i == 3 && !(containsNumbersAndDot(value[dataFields[i]]) ||
                                    containsOnlyNumbers(value[dataFields[i]])))
                     {
-                        Console.WriteLine("time" + value[dataFields[i]] );
+                        dResult.error = "wrong format of Time: " + value[dataFields[i]];
+                        dResult.success = false;
                         return false;
                     }
                     // for Open, High, Low, Close
                     if (i > 3 && i < 8 && !containsNumbersAndDot(value[dataFields[i]]))
                     {
-                        Console.WriteLine("open, high, low or close");
+                        dResult.error = "wrong format of Open, High, Low or Close: " + value[dataFields[i]];
+                        dResult.success = false;
                         return false;
                     }
                     //for Vol
                     if (i == 8 && !containsOnlyNumbers(value[dataFields[i]]))
                     {
-                        Console.WriteLine("vol");
+                        dResult.error = "wrong format of Vol: " + value[dataFields[i]];
+                        dResult.success = false;
                         return false;
                     }
                 }
@@ -276,4 +287,5 @@ namespace Downloader
             }
         }   
     }
+    
 }

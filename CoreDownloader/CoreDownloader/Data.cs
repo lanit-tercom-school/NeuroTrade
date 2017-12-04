@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Downloader
+namespace CoreDownloader
 {
     /// <summary>
     /// Class for saving data; waiting for database response to adjust the fromat
@@ -57,7 +57,7 @@ namespace Downloader
         
         public void print()
         {
-            Console.Write($"ticker {valueToPrint(_ticker)}, per {valueToPrint(_per)}, date {valueToPrint(_date)}," +
+            Console.WriteLine($"ticker {valueToPrint(_ticker)}, per {valueToPrint(_per)}, date {valueToPrint(_date)}," +
                           $" time {valueToPrint(_time)}, open {valueToPrint(_open)}, high {valueToPrint(_high)}," +
                           $" low {valueToPrint(_low)}, close {valueToPrint(_close)}, vol {valueToPrint(_vol)}");
         }
