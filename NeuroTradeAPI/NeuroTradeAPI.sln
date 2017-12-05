@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuroTradeAPI", "NeuroTrade
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDownloader", "..\CoreDownloader\CoreDownloader\CoreDownloader.csproj", "{B2A18E54-6AD6-47FF-8A44-C16A02A368D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{EA9884BB-149D-42CF-A796-72CAC1307118}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B2A18E54-6AD6-47FF-8A44-C16A02A368D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2A18E54-6AD6-47FF-8A44-C16A02A368D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2A18E54-6AD6-47FF-8A44-C16A02A368D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA9884BB-149D-42CF-A796-72CAC1307118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA9884BB-149D-42CF-A796-72CAC1307118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA9884BB-149D-42CF-A796-72CAC1307118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA9884BB-149D-42CF-A796-72CAC1307118}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
