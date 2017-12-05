@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Downloader - Add Job</title>
+    
+        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <h1 style="text-align:left;">Neuro Trade</h1>
+        <h2>Add jobs for Downloader</h2>
+        <script>
+            function api_call()
+            {
+                $.post("/api/v0/jobs",{path:$("input#addr_tf").val()},
+                     (data, status) => $("#resp_div").text(data.toString()));
+            };
+            setInterval(function() {
+                $.get("/api/v0/jobs", function(data, status) {
+                    if (status != 'nocontent')
+                        $("#console_div").prepend('<p>'+data + '</p>');
+                    }
+                )
+            }, 1500);
+        </script>
+        <form action="javascript:api_call();">
+            <label for="addr_tf">address</label>
+            <input type="text" id="addr_tf" value="http://export.finam.ru/export9.out/?market=45&em=182439&code=EURUSD000TOD&apply=0&df=1&mf=10&yf=2017&from=01.11.2017&dt=16&mt=10&yt=2017&to=16.11.2017&p=9&f=EURUSD000TOD_171101_171116&e=.txt&cn=EURUSD000TOD&dtf=1&tmf=2&MSOR=1&mstimever=0&sep=1&sep2=1&datf=3&at=1"/>
+            <input type="submit" value="Send request"/>
+        </form>
+        <br/>
+        <div id="resp_div"></div>
+        <hr/>
+        <div id="console_div"></div>
+    
+    
+    </body>
+</html>

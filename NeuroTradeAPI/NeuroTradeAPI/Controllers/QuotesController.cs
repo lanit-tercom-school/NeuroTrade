@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CoreDownloader;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace NeuroTradeAPI.Controllers
 {
@@ -71,6 +73,44 @@ namespace NeuroTradeAPI.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+    }
+    [Route("api/v0/[controller]")]
+    public class JobsController : Controller
+    {
+        private static string msg_pipe = "";
+        
+        // GET api/v0/jobs
+        [HttpGet]
+        public string Get()
+        {
+            if (msg_pipe.Length == 0)
+            {
+                Response.StatusCode = 204;
+                return "";
+            }
+
+            String tmp = msg_pipe;
+            msg_pipe = "";
+            return tmp;
+        }
+        
+        // POST api/v0/jobs
+        [HttpPost]
+        public string Post(string path)
+        {
+            Downloader.Reqest(path, GetResponse);
+            return "ok, we'll check it out soon\n"+path;
+        }
+
+        private static void GetResponse(DownloadingResult response)
+        {
+            msg_pipe = response.success ? 
+                String.Format("Task {0} succeeded.\nReceived {1} candles for {2}",
+                    response.name, response.dataList.Count, response.dataList[0]._ticker) :
+                String.Format("Task {0} failed.\nError: {1}", response.name, response.error);
+            
+            Console.WriteLine(msg_pipe);
         }
     }
 }

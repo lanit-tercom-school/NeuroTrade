@@ -37,7 +37,7 @@ namespace NeuroTradeAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseStaticFiles();
             app.UseMvc();
         }
     }
