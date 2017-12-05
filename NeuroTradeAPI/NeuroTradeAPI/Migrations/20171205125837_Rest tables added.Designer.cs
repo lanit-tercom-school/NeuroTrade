@@ -11,32 +11,15 @@ using System;
 namespace NeuroTradeAPI.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20171205125837_Rest tables added")]
+    partial class Resttablesadded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452");
-
-            modelBuilder.Entity("NeuroTradeAPI.Algorithm", b =>
-                {
-                    b.Property<int>("AlgorithmId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Password");
-
-                    b.Property<string>("Path");
-
-                    b.Property<int>("UserId");
-
-                    b.HasKey("AlgorithmId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Algorithms");
-                });
 
             modelBuilder.Entity("NeuroTradeAPI.Batch", b =>
                 {
@@ -98,62 +81,6 @@ namespace NeuroTradeAPI.Migrations
                     b.ToTable("Instruments");
                 });
 
-            modelBuilder.Entity("NeuroTradeAPI.TrainedModel", b =>
-                {
-                    b.Property<int>("TrainedModelId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AlgorithmId");
-
-                    b.Property<string>("Data");
-
-                    b.Property<int>("InstrumentId");
-
-                    b.Property<string>("Parameters");
-
-                    b.Property<float>("Performance");
-
-                    b.Property<DateTime>("TestBegin");
-
-                    b.Property<DateTime>("TestEnd");
-
-                    b.Property<DateTime>("TrainBegin");
-
-                    b.Property<DateTime>("TrainEnd");
-
-                    b.HasKey("TrainedModelId");
-
-                    b.HasIndex("AlgorithmId");
-
-                    b.HasIndex("InstrumentId");
-
-                    b.ToTable("TrainedModels");
-                });
-
-            modelBuilder.Entity("NeuroTradeAPI.User", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Email");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Password");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("NeuroTradeAPI.Algorithm", b =>
-                {
-                    b.HasOne("NeuroTradeAPI.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("NeuroTradeAPI.Batch", b =>
                 {
                     b.HasOne("NeuroTradeAPI.Instrument", "Instrument")
@@ -167,19 +94,6 @@ namespace NeuroTradeAPI.Migrations
                     b.HasOne("NeuroTradeAPI.Batch", "Batch")
                         .WithMany()
                         .HasForeignKey("BatchId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("NeuroTradeAPI.TrainedModel", b =>
-                {
-                    b.HasOne("NeuroTradeAPI.Algorithm", "Algorithm")
-                        .WithMany()
-                        .HasForeignKey("AlgorithmId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("NeuroTradeAPI.Instrument", "Instrument")
-                        .WithMany()
-                        .HasForeignKey("InstrumentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

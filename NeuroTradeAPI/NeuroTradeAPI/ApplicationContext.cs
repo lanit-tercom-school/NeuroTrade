@@ -8,6 +8,9 @@ namespace NeuroTradeAPI
         public DbSet<Instrument> Instruments { get; set; }
         public DbSet<Batch> Batches { get; set; }
         public DbSet<Candle> Candles { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Algorithm> Algorithms { get; set; }
+        public DbSet<TrainedModel> TrainedModels { get; set; }
         private static DbContextOptions<ApplicationContext> _defaultOptions;
 
         public ApplicationContext() : base(_defaultOptions)
