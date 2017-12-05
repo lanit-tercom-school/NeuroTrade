@@ -12,7 +12,7 @@ namespace NeuroTradeAPI.Controllers
     [Route("api/v0/[controller]")]
     public class QuotesController : Controller
     {
-        private readonly ApplicationContext _context;
+        private ApplicationContext _context;
 
         public QuotesController(ApplicationContext context)
         {
@@ -23,13 +23,12 @@ namespace NeuroTradeAPI.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            var batches = _context.Batches;
-            return Json(from batch in batches select new Dictionary<string, object>()
+
+            var intrums = _context.Instruments;
+            return Json(from inst in intrums select new Dictionary<string, object>()
             {
-                {"id", batch.BatchId},
-                {"Ticker", batch.Alias},
-                {"Start", batch.Timestamp.ToString()},
-                {"Interval", batch.Interval}
+                {"Instument", inst.toDict()},
+                {"Batches", _context.Batches.Where(b=>b.Instrument==inst).ToList()}
             });
         }
 
@@ -37,24 +36,20 @@ namespace NeuroTradeAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
-            var b = _context.Batches.Find(id);
-            if (b == null)
-                return NotFound("Batch not found");
-            
-            var batch = _context.Candles.Where(c => c.Batch == b);
-            return Json(new Dictionary<string, object>()
-            {
-                {"Ticker", b.Alias},
-                {"Start", b.Timestamp.ToString()},
-                {"Interval", b.Interval},
-                {
-                    "Candles", 
-                    from c in batch select (new Dictionary<string, object>()
-                    {
-                        {"id",c.CandleId},{"open",c.Open},{"close",c.Close},{"low",c.Low},{"high",c.High},{"volume",c.Volume}
-                    })
-                }
-            });
+//            var b = _context.Batches.Find(id);
+//            if (b == null)
+//                return NotFound("Batch not found");
+//            
+//            var batch = _context.Candles.Where(c => c.Batch == b);
+//            return Json(new Dictionary<string, object>()
+//            {
+//                {"Batch", b.toDict()},
+//                {
+//                    "Candles", 
+//                    from c in batch select c.toDict()
+//                }
+//            });
+            return Ok();
         }
 
         // POST api/v0/quotes

@@ -11,8 +11,8 @@ using System;
 namespace NeuroTradeAPI.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20171127173408_fix-missing-table-2")]
-    partial class fixmissingtable2
+    [Migration("20171205105454_re-init")]
+    partial class reinit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,23 +26,29 @@ namespace NeuroTradeAPI.Migrations
                     b.Property<int>("BatchId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Alias");
+                    b.Property<DateTime>("BeginTime");
+
+                    b.Property<DateTime?>("EndTime");
+
+                    b.Property<int>("InstrumentId");
 
                     b.Property<TimeSpan>("Interval");
 
-                    b.Property<DateTime>("Timestamp");
-
                     b.HasKey("BatchId");
+
+                    b.HasIndex("InstrumentId");
 
                     b.ToTable("Batches");
                 });
 
             modelBuilder.Entity("NeuroTradeAPI.Candle", b =>
                 {
-                    b.Property<int>("CandleId")
+                    b.Property<long>("CandleId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("BatchId");
+
+                    b.Property<DateTime?>("BeginTime");
 
                     b.Property<float>("Close");
 
@@ -59,6 +65,28 @@ namespace NeuroTradeAPI.Migrations
                     b.HasIndex("BatchId");
 
                     b.ToTable("Candles");
+                });
+
+            modelBuilder.Entity("NeuroTradeAPI.Instrument", b =>
+                {
+                    b.Property<int>("InstrumentId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Alias");
+
+                    b.Property<string>("DownloadAlias");
+
+                    b.HasKey("InstrumentId");
+
+                    b.ToTable("Instruments");
+                });
+
+            modelBuilder.Entity("NeuroTradeAPI.Batch", b =>
+                {
+                    b.HasOne("NeuroTradeAPI.Instrument", "Instrument")
+                        .WithMany()
+                        .HasForeignKey("InstrumentId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("NeuroTradeAPI.Candle", b =>

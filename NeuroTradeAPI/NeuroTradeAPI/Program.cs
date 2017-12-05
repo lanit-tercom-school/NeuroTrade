@@ -23,7 +23,7 @@ namespace NeuroTradeAPI
                 try
                 {
                     var context = services.GetRequiredService<ApplicationContext>();
-                    DbInitializer.Initialize(context);
+                    context.Initialize();
                 }
                 catch (Exception ex)
                 {
