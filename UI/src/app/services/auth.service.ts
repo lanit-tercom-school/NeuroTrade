@@ -9,7 +9,7 @@ import {SignInUser} from '../models/user/sign-in-user';
 import {SignUpUser} from '../models/user/sign-up-user';
 
 @Injectable()
-export class UserService {
+export class AuthService {
   constructor(private http: Http) {}
 
   authorize(_user: SignInUser): Observable<CurrentUser> {
