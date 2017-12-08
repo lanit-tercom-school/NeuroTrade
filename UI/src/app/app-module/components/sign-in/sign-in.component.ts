@@ -13,10 +13,4 @@ export class SignInComponent implements OnInit {
   ngOnInit() {
   }
 
-  GetUser(): void {
-    this.service.getUserByToken('MM').
-      subscribe((user) => {
-      console.log(user);
-    })
-  }
 }
