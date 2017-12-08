@@ -1,0 +1,10 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Владимир",
+      "email": "student@spbu.ru",
+      "token": "MM"
+    }
+  ]
+}
