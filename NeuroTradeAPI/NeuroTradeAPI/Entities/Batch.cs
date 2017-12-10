@@ -14,6 +14,7 @@ namespace NeuroTradeAPI.Entities
         [ForeignKey("InstrumentId")]
         public Instrument Instrument { get; set; }
         
+        
         public Dictionary<string, object> toDict()
         {
             return new Dictionary<string, object>()
@@ -22,6 +23,18 @@ namespace NeuroTradeAPI.Entities
                 {"Start", BeginTime.ToString()},
                 {"Interval", Interval}
             };
+        }
+
+        public static TimeSpan StrToInterval(string finam_form)
+        {
+            if (int.TryParse(finam_form, out var num))
+                return new TimeSpan(0, num, 0);
+            return finam_form[0] == 'D' ? new TimeSpan(1, 0, 0, 0) :
+                   finam_form[0] == 'W' ? new TimeSpan(7, 0, 0, 0) :
+                   finam_form[0] == 'M' ? new TimeSpan(30, 12, 0, 0) :
+                   throw new ArgumentException("Doesn't match Finam's 'per' format");
+
+
         }
     }
 }

@@ -10,15 +10,15 @@ namespace CoreDownloader
     {
         public static int NumberOfFields { get; } = 9;
 
-        public string _ticker;    // HEY
-        private string _per;      // We have to use it somehow,
-        private string _date;     // so I need getters or access to these fields
-        private string _time;
-        private string _open;
-        private string _high;
-        private string _low;
-        private string _close;
-        private string _vol;
+        public string _ticker;   // HEY
+        public string _per;      // Sorry for making them public,
+        public string _date;     // but I don't know how to access them
+        public string _time;
+        public string _open;
+        public string _high;
+        public string _low;
+        public string _close;
+        public string _vol;
 
         public Data()
         {
@@ -31,6 +31,7 @@ namespace CoreDownloader
             _low = null;
             _close = null;
             _vol = null;
+            
         }
         
         /// <summary>

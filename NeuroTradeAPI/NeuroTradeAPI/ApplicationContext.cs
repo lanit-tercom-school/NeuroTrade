@@ -55,10 +55,10 @@ namespace NeuroTradeAPI
 
             var candles = new Candle[]
             {
-                new Candle{BatchId=1,Open=111700,High=112600,Low=111700,Close=112480,Volume=80244},
-                new Candle{BatchId=1,Open=112470,High=112720,Low=112470,Close=112510,Volume=38690},
-                new Candle{BatchId=2,Open=16047,High=16115,Low=16001,Close=16091,Volume=1751},
-                new Candle{BatchId=2,Open=16091,High=16092,Low=16058,Close=16086,Volume=919}
+                new Candle{BatchId=1,Open=111700,High=112600,Low=111700,Close=112480,Volume=80244,BeginTime=DateTime.Parse("01/11/2017 10:00:00")},
+                new Candle{BatchId=1,Open=112470,High=112720,Low=112470,Close=112510,Volume=38690,BeginTime=DateTime.Parse("01/11/2017 11:00:00")},
+                new Candle{BatchId=2,Open=16047,High=16115,Low=16001,Close=16091,Volume=1751,BeginTime=DateTime.Parse("01/11/2017 10:00:00")},
+                new Candle{BatchId=2,Open=16091,High=16092,Low=16058,Close=16086,Volume=919,BeginTime=DateTime.Parse("01/11/2017 10:30:00")}
             };
             foreach (Candle c in candles)
             {

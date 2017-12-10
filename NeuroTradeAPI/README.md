@@ -35,4 +35,9 @@ CREATE DATABASE nt_db OWNER nt_dev;
     * чтобы проверить, что всё окей: `dotnet build`
     * если в проекте изменилась модель, а в локальной базе данных - нет, то понадобится `dotnet ef database update`
 
+# Прочее
+* После запуска проекта можно посмотреть [список инструментов и наборов](http://localhost:5000/api/v0/quotes), [добавить данные с биржи](http://localhost:5000/addjob.html).   
+* Проект `Repository` есть, но он пока возможно не будет работать, потому что БД сейчас меняется активно, и ради простоты добавлена конфигурация сборки `Without Repo`.
+* По той же причине могут возникать ошибки во время миграции базы данных (`dotnet ef database update`). В этом случае можно руками удалить таблицы из БД и запустить SQL скрипт, который лежит в папке "Database related misc".
+
 [см тут]:https://dba.stackexchange.com/questions/44586/forgotten-postgresql-windows-password

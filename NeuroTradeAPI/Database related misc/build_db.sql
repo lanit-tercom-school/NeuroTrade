@@ -1,3 +1,17 @@
+CREATE SCHEMA "public";
+
+CREATE SEQUENCE "public"."Algorithms_AlgorithmId_seq" START WITH 1;
+
+CREATE SEQUENCE "public"."Batches_BatchId_seq" START WITH 1;
+
+CREATE SEQUENCE "public"."Candles_CandleId_seq" START WITH 1;
+
+CREATE SEQUENCE "public"."Instruments_InstrumentId_seq" START WITH 1;
+
+CREATE SEQUENCE "public"."TrainedModels_TrainedModelId_seq" START WITH 1;
+
+CREATE SEQUENCE "public"."Users_UserId_seq" START WITH 1;
+
 CREATE TABLE "public"."Instruments" ( 
 	"InstrumentId"       serial  NOT NULL,
 	"Alias"              text  ,
@@ -75,15 +89,4 @@ ALTER TABLE "public"."Candles" ADD CONSTRAINT "FK_Candles_Batches_BatchId" FOREI
 ALTER TABLE "public"."TrainedModels" ADD CONSTRAINT "FK_TrainedModels_Algorithms_AlgorithmId" FOREIGN KEY ( "AlgorithmId" ) REFERENCES "public"."Algorithms"( "AlgorithmId" ) ON DELETE CASCADE;
 
 ALTER TABLE "public"."TrainedModels" ADD CONSTRAINT "FK_TrainedModels_Instruments_InstrumentId" FOREIGN KEY ( "InstrumentId" ) REFERENCES "public"."Instruments"( "InstrumentId" ) ON DELETE CASCADE;
-
-INSERT INTO "public"."Instruments"( InstrumentId, Alias, DownloadAlias ) VALUES ( 1, 'RTS-12.17(RIZ7)', 'SPFB.RTS-12.17' ); 
-INSERT INTO "public"."Instruments"( InstrumentId, Alias, DownloadAlias ) VALUES ( 2, 'SBPR-12.17(SPZ7)', 'SPFB.SBPR-12.17' ); 
-
-INSERT INTO "public"."Batches"( BatchId, BeginTime, EndTime, InstrumentId, Interval ) VALUES ( 1, '2017-11-01 10:00:00', null, 1, '0 years 0 mons 0 days 1 hours 0 mins 0.00 secs' ); 
-INSERT INTO "public"."Batches"( BatchId, BeginTime, EndTime, InstrumentId, Interval ) VALUES ( 2, '2017-11-01 10:00:00', null, 2, '0 years 0 mons 0 days 0 hours 30 mins 0.00 secs' ); 
-
-INSERT INTO "public"."Candles"( CandleId, BatchId, BeginTime, Close, High, Low, Open, Volume ) VALUES ( 1, 1, null, 112480.0, 112600.0, 111700.0, 111700.0, 80244 ); 
-INSERT INTO "public"."Candles"( CandleId, BatchId, BeginTime, Close, High, Low, Open, Volume ) VALUES ( 2, 1, null, 112510.0, 112720.0, 112470.0, 112470.0, 38690 ); 
-INSERT INTO "public"."Candles"( CandleId, BatchId, BeginTime, Close, High, Low, Open, Volume ) VALUES ( 3, 2, null, 16091.0, 16115.0, 16001.0, 16047.0, 1751 ); 
-INSERT INTO "public"."Candles"( CandleId, BatchId, BeginTime, Close, High, Low, Open, Volume ) VALUES ( 4, 2, null, 16086.0, 16092.0, 16058.0, 16091.0, 919 ); 
 
