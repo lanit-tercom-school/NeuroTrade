@@ -1,4 +1,6 @@
-﻿namespace NeuroTradeAPI
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace NeuroTradeAPI.Entities
 {
     public class User
     {   

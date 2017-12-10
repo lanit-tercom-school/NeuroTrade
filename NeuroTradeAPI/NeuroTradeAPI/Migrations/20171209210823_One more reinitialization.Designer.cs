@@ -11,9 +11,10 @@ using System;
 namespace NeuroTradeAPI.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20171209210823_One more reinitialization")]
+    partial class Onemorereinitialization
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -142,6 +143,9 @@ namespace NeuroTradeAPI.Migrations
                     b.Property<string>("Name");
 
                     b.Property<string>("Password");
+
+                    b.Property<string>("PersonalData")
+                        .HasColumnType("jsonb");
 
                     b.HasKey("UserId");
 

@@ -11,8 +11,8 @@ using System;
 namespace NeuroTradeAPI.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20171205130218_Rest tables added - fix")]
-    partial class Resttablesaddedfix
+    [Migration("20171209215045_err fix")]
+    partial class errfix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,12 +21,12 @@ namespace NeuroTradeAPI.Migrations
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452");
 
-            modelBuilder.Entity("NeuroTradeAPI.Algorithm", b =>
+            modelBuilder.Entity("NeuroTradeAPI.Entities.Algorithm", b =>
                 {
                     b.Property<int>("AlgorithmId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Password");
+                    b.Property<string>("Description");
 
                     b.Property<string>("Path");
 
@@ -39,7 +39,7 @@ namespace NeuroTradeAPI.Migrations
                     b.ToTable("Algorithms");
                 });
 
-            modelBuilder.Entity("NeuroTradeAPI.Batch", b =>
+            modelBuilder.Entity("NeuroTradeAPI.Entities.Batch", b =>
                 {
                     b.Property<int>("BatchId")
                         .ValueGeneratedOnAdd();
@@ -59,7 +59,7 @@ namespace NeuroTradeAPI.Migrations
                     b.ToTable("Batches");
                 });
 
-            modelBuilder.Entity("NeuroTradeAPI.Candle", b =>
+            modelBuilder.Entity("NeuroTradeAPI.Entities.Candle", b =>
                 {
                     b.Property<long>("CandleId")
                         .ValueGeneratedOnAdd();
@@ -85,7 +85,7 @@ namespace NeuroTradeAPI.Migrations
                     b.ToTable("Candles");
                 });
 
-            modelBuilder.Entity("NeuroTradeAPI.Instrument", b =>
+            modelBuilder.Entity("NeuroTradeAPI.Entities.Instrument", b =>
                 {
                     b.Property<int>("InstrumentId")
                         .ValueGeneratedOnAdd();
@@ -99,18 +99,20 @@ namespace NeuroTradeAPI.Migrations
                     b.ToTable("Instruments");
                 });
 
-            modelBuilder.Entity("NeuroTradeAPI.TrainedModel", b =>
+            modelBuilder.Entity("NeuroTradeAPI.Entities.TrainedModel", b =>
                 {
                     b.Property<int>("TrainedModelId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AlgorithmId");
 
-                    b.Property<string>("Data");
+                    b.Property<string>("Data")
+                        .HasColumnType("jsonb");
 
                     b.Property<int>("InstrumentId");
 
-                    b.Property<string>("Parameters");
+                    b.Property<string>("Parameters")
+                        .HasColumnType("jsonb");
 
                     b.Property<float>("Performance");
 
@@ -131,7 +133,7 @@ namespace NeuroTradeAPI.Migrations
                     b.ToTable("TrainedModels");
                 });
 
-            modelBuilder.Entity("NeuroTradeAPI.User", b =>
+            modelBuilder.Entity("NeuroTradeAPI.Entities.User", b =>
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd();
@@ -147,38 +149,38 @@ namespace NeuroTradeAPI.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("NeuroTradeAPI.Algorithm", b =>
+            modelBuilder.Entity("NeuroTradeAPI.Entities.Algorithm", b =>
                 {
-                    b.HasOne("NeuroTradeAPI.User", "User")
+                    b.HasOne("NeuroTradeAPI.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("NeuroTradeAPI.Batch", b =>
+            modelBuilder.Entity("NeuroTradeAPI.Entities.Batch", b =>
                 {
-                    b.HasOne("NeuroTradeAPI.Instrument", "Instrument")
+                    b.HasOne("NeuroTradeAPI.Entities.Instrument", "Instrument")
                         .WithMany("RelatedBatches")
                         .HasForeignKey("InstrumentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("NeuroTradeAPI.Candle", b =>
+            modelBuilder.Entity("NeuroTradeAPI.Entities.Candle", b =>
                 {
-                    b.HasOne("NeuroTradeAPI.Batch", "Batch")
+                    b.HasOne("NeuroTradeAPI.Entities.Batch", "Batch")
                         .WithMany()
                         .HasForeignKey("BatchId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("NeuroTradeAPI.TrainedModel", b =>
+            modelBuilder.Entity("NeuroTradeAPI.Entities.TrainedModel", b =>
                 {
-                    b.HasOne("NeuroTradeAPI.Algorithm", "Algorithm")
+                    b.HasOne("NeuroTradeAPI.Entities.Algorithm", "Algorithm")
                         .WithMany()
                         .HasForeignKey("AlgorithmId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("NeuroTradeAPI.Instrument", "Instrument")
+                    b.HasOne("NeuroTradeAPI.Entities.Instrument", "Instrument")
                         .WithMany()
                         .HasForeignKey("InstrumentId")
                         .OnDelete(DeleteBehavior.Cascade);

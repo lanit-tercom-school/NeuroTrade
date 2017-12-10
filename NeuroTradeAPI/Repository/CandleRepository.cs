@@ -1,5 +1,6 @@
 ﻿using System.Security.AccessControl;
 using NeuroTradeAPI;
+using NeuroTradeAPI.Entities;
 
 namespace Repository
 {

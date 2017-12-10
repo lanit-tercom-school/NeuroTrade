@@ -1,4 +1,5 @@
 ﻿using NeuroTradeAPI;
+using NeuroTradeAPI.Entities;
 
 namespace Repository
 {

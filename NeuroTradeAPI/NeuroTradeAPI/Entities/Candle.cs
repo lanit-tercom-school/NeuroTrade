@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace NeuroTradeAPI
+namespace NeuroTradeAPI.Entities
 {
     public class Candle
     {
