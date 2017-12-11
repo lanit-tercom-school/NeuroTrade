@@ -30,10 +30,50 @@ namespace NeuroTradeAPI.Controllers
                 });
         }
 
-        // GET api/v0/quotes/5
-        [HttpGet("{id}")]
-        public ActionResult Get(int id)
+        // GET api/v0/quotes/filter?param=...
+        [Route("filter")]
+        public ActionResult Filter(string instrument, string batch, string from, string to)
         {
+            int id;
+            var context = new ApplicationContext();
+            if (instrument != null)
+            {
+                var target = int.TryParse(instrument, out id) ? context.Instruments.Find(id)
+                    : context.Instruments.FirstOrDefault(instr => instr.DownloadAlias == instrument || instr.Alias == instrument);
+                if (target == null)
+                    return NotFound("Instrument not found");
+                var all_candles = context.Batches.Where(_batch => _batch.InstrumentId == target.InstrumentId)
+                    .Join(context.Candles, batch1 => batch1.BatchId, candle => candle.BatchId,
+                        (batch1, batchCandle) => new {batch1, batch_candle = batchCandle});
+                if (!DateTime.TryParse(from, out var dtFrom))
+                    dtFrom = DateTime.MinValue;
+                if (!DateTime.TryParse(from, out var dtTo))
+                    dtTo = DateTime.MaxValue;
+                Console.WriteLine(from);
+//                DateTime dt_from = from == null ? DateTime.MinValue : DateTime.Parse(from),
+//                         dt_to   = from == null ? DateTime.MaxValue : DateTime.Parse(to);
+                var candles = all_candles.Where(arg => arg.batch_candle.BeginTime >= dtFrom &&
+                                                       arg.batch_candle.BeginTime <= dtTo).ToList();
+                
+                return Json(from c in candles select c.batch_candle.toDict());
+                
+//                List<Candle> selection = new List<Candle>();
+//                foreach (var VARIABLE in candles)
+//                {
+//                    
+//                }
+//                return Json(from b in candles
+//                    select new Dictionary<string, object>()
+//                    {
+//                        {"Instument", b.Key},
+//                        {"Candles", from b in inst select b.Batch.toDict()}
+//                    });
+            }    else if (batch != null)
+            {
+                return Ok("will look for batch");
+            }
+            return BadRequest("Please provide 'instrument' or 'batch' parameter");
+            
 //            var b = _context.Batches.Find(id);
 //            if (b == null)
 //                return NotFound("Batch not found");
@@ -47,7 +87,6 @@ namespace NeuroTradeAPI.Controllers
 //                    from c in batch select c.toDict()
 //                }
 //            });
-            return Ok();
         }
 
         // POST api/v0/quotes
