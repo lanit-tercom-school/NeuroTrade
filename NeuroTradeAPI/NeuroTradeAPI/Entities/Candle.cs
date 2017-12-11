@@ -49,7 +49,8 @@ namespace NeuroTradeAPI.Entities
                 {"close", Close},
                 {"low", Low},
                 {"high", High},
-                {"volume", Volume}
+                {"volume", Volume},
+                {"per", Batch.Interval}
             };
         }
     }

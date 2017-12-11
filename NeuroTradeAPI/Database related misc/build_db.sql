@@ -80,7 +80,7 @@ CREATE INDEX IX_TrainedModels_AlgorithmId ON "public"."TrainedModels" ( "Algorit
 
 CREATE INDEX IX_TrainedModels_InstrumentId ON "public"."TrainedModels" ( "InstrumentId" );
 
-ALTER TABLE "public"."Algorithms" ADD CONSTRAINT "FK_Algorithms_Users_UserId" FOREIGN KEY ( "UserId" ) REFERENCES "public"."Users"( "UserId" ) ON DELETE CASCADE;
+ALTER TABLE "public"."Algorithms" ADD CONSTRAINT "FK_Algorithms_Users_UserId" FOREIGN KEY ( "UserId" ) REFERENCES "public"."Users"( "UserId" );
 
 ALTER TABLE "public"."Batches" ADD CONSTRAINT "FK_Batches_Instruments_InstrumentId" FOREIGN KEY ( "InstrumentId" ) REFERENCES "public"."Instruments"( "InstrumentId" ) ON DELETE CASCADE;
 
@@ -88,5 +88,5 @@ ALTER TABLE "public"."Candles" ADD CONSTRAINT "FK_Candles_Batches_BatchId" FOREI
 
 ALTER TABLE "public"."TrainedModels" ADD CONSTRAINT "FK_TrainedModels_Algorithms_AlgorithmId" FOREIGN KEY ( "AlgorithmId" ) REFERENCES "public"."Algorithms"( "AlgorithmId" ) ON DELETE CASCADE;
 
-ALTER TABLE "public"."TrainedModels" ADD CONSTRAINT "FK_TrainedModels_Instruments_InstrumentId" FOREIGN KEY ( "InstrumentId" ) REFERENCES "public"."Instruments"( "InstrumentId" ) ON DELETE CASCADE;
+ALTER TABLE "public"."TrainedModels" ADD CONSTRAINT "FK_TrainedModels_Instruments_InstrumentId" FOREIGN KEY ( "InstrumentId" ) REFERENCES "public"."Instruments"( "InstrumentId" );
 

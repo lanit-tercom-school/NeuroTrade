@@ -36,43 +36,65 @@ namespace NeuroTradeAPI.Controllers
         {
             int id;
             var context = new ApplicationContext();
+            if (!DateTime.TryParse(from, out var dtFrom))
+                dtFrom = DateTime.MinValue;
+            if (!DateTime.TryParse(to,   out var dtTo))
+                dtTo = DateTime.MaxValue;
+            
             if (instrument != null)
             {
                 var target = int.TryParse(instrument, out id) ? context.Instruments.Find(id)
                     : context.Instruments.FirstOrDefault(instr => instr.DownloadAlias == instrument || instr.Alias == instrument);
                 if (target == null)
                     return NotFound("Instrument not found");
-                var all_candles = context.Batches.Where(_batch => _batch.InstrumentId == target.InstrumentId)
+                var candles = context.Batches
+                    .Where(_batch => _batch.InstrumentId == target.InstrumentId)
                     .Join(context.Candles, batch1 => batch1.BatchId, candle => candle.BatchId,
-                        (batch1, batchCandle) => new {batch1, batch_candle = batchCandle});
-                if (!DateTime.TryParse(from, out var dtFrom))
-                    dtFrom = DateTime.MinValue;
-                if (!DateTime.TryParse(from, out var dtTo))
-                    dtTo = DateTime.MaxValue;
-                Console.WriteLine(from);
-//                DateTime dt_from = from == null ? DateTime.MinValue : DateTime.Parse(from),
-//                         dt_to   = from == null ? DateTime.MaxValue : DateTime.Parse(to);
-                var candles = all_candles.Where(arg => arg.batch_candle.BeginTime >= dtFrom &&
-                                                       arg.batch_candle.BeginTime <= dtTo).ToList();
+                        (batch1, batchCandle) => new {batch1, batch_candle = batchCandle})
+                    .Where(arg => arg.batch_candle.BeginTime >= dtFrom && arg.batch_candle.BeginTime < dtTo)
+                    .ToList();
                 
-                return Json(from c in candles select c.batch_candle.toDict());
-                
-//                List<Candle> selection = new List<Candle>();
-//                foreach (var VARIABLE in candles)
-//                {
-//                    
-//                }
-//                return Json(from b in candles
-//                    select new Dictionary<string, object>()
-//                    {
-//                        {"Instument", b.Key},
-//                        {"Candles", from b in inst select b.Batch.toDict()}
-//                    });
+                return Json(new Dictionary<string, object>()
+                {
+                    {"Request", new Dictionary<string, object>()
+                        {
+                            {"Instrument", target.toDict()},
+                            {"From", dtFrom},
+                            {"To", dtTo}
+                        }
+                    },
+                    {"Result", from cndl in candles select cndl.batch_candle.toDict()}  
+                });
+
             }    else if (batch != null)
             {
-                return Ok("will look for batch");
+                if (!int.TryParse(batch, out id))
+                    return BadRequest("Batch must be presented by id");
+                var target = context.Batches.Find(id);
+                var targetInst = context.Instruments.FirstOrDefault(_instr => _instr.InstrumentId == target.InstrumentId);
+                var candles = context.Candles.Where(cndl => cndl.BatchId == target.BatchId &&
+                                                            cndl.BeginTime >= dtFrom && cndl.BeginTime < dtTo)
+                                             .ToList();
+                if (!candles.Any())
+                    return NoContent();
+                return Json(new Dictionary<string, object>()
+                {
+                    {"Request", new Dictionary<string, object>()
+                        {
+                            {"Instrument", targetInst.toDict()},
+                            {"Batch", target.toDict()},
+                            {"From", dtFrom},
+                            {"To", dtTo}
+                        }
+                    }
+                    ,{"Result", from cndl in candles select cndl.toDict()}  
+                });
             }
-            return BadRequest("Please provide 'instrument' or 'batch' parameter");
+            else
+            {
+                return BadRequest("Please provide 'instrument' or 'batch' parameter");
+            }
+            
             
 //            var b = _context.Batches.Find(id);
 //            if (b == null)

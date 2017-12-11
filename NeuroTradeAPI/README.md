@@ -36,8 +36,16 @@ CREATE DATABASE nt_db OWNER nt_dev;
     * если в проекте изменилась модель, а в локальной базе данных - нет, то понадобится `dotnet ef database update`
 
 # Прочее
-* После запуска проекта можно посмотреть [список инструментов и наборов](http://localhost:5000/api/v0/quotes), [добавить данные с биржи](http://localhost:5000/addjob.html).   
+## Доступные API вызовы
+* Список инструментов и наборов[/api/v0/quotes](http://localhost:5000/api/v0/quotes);
+* загрузка данных с биржи [/addjob.html](http://localhost:5000/addjob.html);
+* поиск по инструментам с фильтрами [/api/v0/quotes](http://localhost:5000/api/v0/quotes/filter) с параметрами:
+	* [instrument=...](http://localhost:5000/api/v0/quotes/filter?instrument=1) - поиск по id или названию тикера,
+	* [batch=...](http://localhost:5000/api/v0/quotes/filter?batch=1) - поиск по id набора,
+	* [from и to](localhost:5000/api/v0/quotes/filter?instrument=1&from=2017-12-05T13:00:00&to=2017-12-05T15:00:00) - для временного среза, оба опциональные. Формат даты 2017-12-05 13:00:00 (разделитель - пробел или буква T; можно не указывать время) гарантированно работает.
+
+## Возможные непонятки
 * Проект `Repository` есть, но он пока возможно не будет работать, потому что БД сейчас меняется активно, и ради простоты добавлена конфигурация сборки `Without Repo`.
-* По той же причине могут возникать ошибки во время миграции базы данных (`dotnet ef database update`). В этом случае можно руками удалить таблицы из БД и запустить SQL скрипт, который лежит в папке "Database related misc".
+* По той же причине могут возникать ошибки во время миграции базы данных (`dotnet ef database update`). В этом случае можно руками удалить таблицы из БД и запустить SQL скрипт, который лежит в папке "Database related misc". В нём ещё чуть больше правил, чем позволяет сделать Entity Framework.
 
 [см тут]:https://dba.stackexchange.com/questions/44586/forgotten-postgresql-windows-password
