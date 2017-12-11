@@ -23,7 +23,7 @@ export class SignInComponent implements OnInit {
     };
     this.authService.authorize(user)
       .subscribe((response) => {
-      console.log(response);
+        console.log(response);
       });
   }
 }

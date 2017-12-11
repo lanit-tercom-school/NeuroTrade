@@ -13,9 +13,14 @@ export class AuthService {
   constructor(private http: Http) {}
 
   authorize(_user: SignInUser): Observable<CurrentUser> {
-    return this.http.get(environment.apiUrl + `/users?email=${_user.email}&password=${_user.password}`)
+    const response = this.http.get(environment.apiUrl + `/users?email=${_user.email}&password=${_user.password}`)
+      .map((response: Response) => response.json());
+    console.log(response);
+
+    return response;
+    /*return this.http.get(environment.apiUrl + `/users?email=${_user.email}&password=${_user.password}`)
       .map((response: Response) => response.json())
-      .map((user: CurrentUser[]) => user[0] ? user[0] : undefined);
+      .map((user: CurrentUser[]) => user[0] ? user[0] : undefined);*/
   }
   register(_user: SignUpUser): Observable<CurrentUser> {
     return this.http.post(environment.apiUrl + `/users`, _user)

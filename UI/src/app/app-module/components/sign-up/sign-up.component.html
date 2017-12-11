@@ -1,12 +1,12 @@
 <div class="container column">
     <h2>Регистрация</h2>
     <form class="signInForm">
-      <input class="form-control nameInput" type="text" placeholder="Имя" />
-      <input class="form-control nameInput" type="text" placeholder="Фамилия" />
-      <input type="email" id="inputEmail" class="form-control" placeholder="Адрес электронной почты" required autofocus>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Пароль" required>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Повторите пароль" required>
-      <button class="btn btn-lg btn-success btn-block" type="submit">Зарегистрироваться</button>
+      <input #name class="form-control nameInput" type="text" placeholder="Имя" />
+      <input #surname class="form-control nameInput" type="text" placeholder="Фамилия" />
+      <input #email type="email" class="form-control" placeholder="Адрес электронной почты" required autofocus>
+      <input #password type="password" class="form-control" placeholder="Пароль" required>
+      <input #passwordConfirmation type="password" class="form-control" placeholder="Повторите пароль" required>
+      <button class="btn btn-lg btn-success btn-block" type="submit" (click)="Register(name.value, surname.value, email.value, password.value, passwordConfirmation.value)">Зарегистрироваться</button>
     </form>
   <p class="bottomText" align = "center">Уже зарегистрированы? <a routerLink="/sign-in">Войти</a></p>
 </div>
