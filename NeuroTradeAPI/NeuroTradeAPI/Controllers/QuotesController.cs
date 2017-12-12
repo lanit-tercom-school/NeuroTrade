@@ -28,7 +28,7 @@ namespace NeuroTradeAPI.Controllers
             return Json(from inst in instrums2
                 select new Dictionary<string, object>()
                 {
-                    {"Instument", inst.Key},
+                    {"Instrument", inst.Key},
                     {"Batches", from b in inst select b.Batch.toDict()}
                 });
         }
@@ -141,10 +141,10 @@ namespace NeuroTradeAPI.Controllers
         
         // POST api/v0/jobs
         [HttpPost]
-        public string Post(string path)
+        public ActionResult Post(string path)
         {
             Downloader.Reqest(path, GetResponse);
-            return "ok, we'll check it out soon\n"+path;
+            return Ok();
         }
 
         private static async void GetResponse(DownloadingResult response)
@@ -245,6 +245,9 @@ namespace NeuroTradeAPI.Controllers
                             if (batch.Interval >= btc_cndl._candle.Batch.Interval)
                             {
                                 msg_pipe += "Downloaded data intersects existing candles and doesn't refine them\n";
+                                context.Database.RollbackTransaction();
+                                context.Batches.Remove(batch);
+                                context.SaveChanges();
                                 return;
                             }
                             forDeletion++;
@@ -253,7 +256,6 @@ namespace NeuroTradeAPI.Controllers
                     }
                     msg_pipe += String.Format("Number of candles to be deleted: {0}\n", forDeletion);
                 }
-
                 msg_pipe += string.Format("Current batch's id is {0}\n", batch.BatchId);
 
                 candles.ForEach(c => c.BatchId = batch.BatchId);

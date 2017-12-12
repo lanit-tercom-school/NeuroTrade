@@ -9,33 +9,54 @@
 			.canhazbreaks {
 				white-space: pre-line;
 			}
+			.highlight {
+				background: #aaffaa;
+			}
 		</style>
-    </head>
-    <body>
-        <h1 style="text-align:left;">Neuro Trade</h1>
-        <h2>Add jobs for Downloader</h2>
-        <script>
+		<script>
+			function table_log(id, msg)
+			{
+				$("table#"+id).prepend('<tr><td>'+new Date().toLocaleString()+
+							'</td><td class="canhazbreaks">'+msg+'</td></tr>');
+			}
             function api_call()
             {
                 $.post("/api/v0/jobs",{path:$("input#addr_tf").val()},
-                     (data, status) => $("#resp_div").text(data.toString()));
+                     (data, status) => {
+						table_log('tasks', status == 'success' ? 'Task accepted' : status);
+					 });
             };
             setInterval(function() {
                 $.get("/api/v0/jobs", function(data, status) {
                     if (status != 'nocontent')
-                        $("#console_div").prepend('<p>'+data + '</p>');
+						table_log('responses', data);
                     }
                 )
             }, 1500);
         </script>
+    </head>
+    <body style="padding: 10px;">
+        <h1 style="text-align:left;" class="highlight">Neuro Trade</h1>
+        <h2>Add jobs for Downloader</h2>
+		<span>Get links from  
+			<a href="https://www.finam.ru/profile/mosbirzha-fyuchersy/rts-12-17-riz7/export/?market=14&em=453103&code=RIZ7&apply=0&df=1&mf=11&yf=2017&from=01.12.2017&dt=1&mt=11&yt=2017&to=01.12.2017&p=5&f=RIZ7_171201_171201&e=.csv&cn=RIZ7&dtf=1&tmf=1&MSOR=0&mstime=on&mstimever=1&sep=1&sep2=1&datf=1&at=1&fsp=1">Finam</a>, or drag'n'drop these into address field: 
+			<a href="http://export.finam.ru/SPFB.RTKM-12.17_171201_171201.csv?market=14&em=481309&code=SPFB.RTKM-12.17&apply=0&df=1&mf=11&yf=2017&from=01.12.2017&dt=1&mt=11&yt=2017&to=01.12.2017&p=5&f=SPFB.RTKM-12.17_171201_171201&e=.csv&cn=SPFB.RTKM-12.17&dtf=1&tmf=1&MSOR=0&mstime=on&mstimever=1&sep=1&sep2=1&datf=1&at=1&fsp=1">Random 1</a>
+			<a href="http://export.finam.ru/fine15.csv?market=14&em=453103&code=SPFB.RTS-12.17&apply=0&df=1&mf=11&yf=2017&from=01.12.2017&dt=1&mt=11&yt=2017&to=01.12.2017&p=5&f=fine15&e=.csv&cn=SPFB.RTS-12.17&dtf=1&tmf=1&MSOR=0&mstime=on&mstimever=1&sep=1&sep2=1&datf=1&at=1&fsp=1">Random 2</a>
+			<a href="http://export.finam.ru/SPFB.SBRF-12.17_171130_171201.csv?market=14&em=467497&code=SPFB.SBRF-12.17&apply=0&df=30&mf=10&yf=2017&from=30.11.2017&dt=1&mt=11&yt=2017&to=01.12.2017&p=7&f=SPFB.SBRF-12.17_171130_171201&e=.csv&cn=SPFB.SBRF-12.17&dtf=1&tmf=1&MSOR=0&mstime=on&mstimever=1&sep=1&sep2=1&datf=1&at=1&fsp=1">Random 3</a>. In your database: view 
+			<a href="/api/v0/quotes">all the batches</a> or
+			<a href="/api/v0/quotes/filter?instrument=1&from=2010-12-05T13:00:00&to=2013-12-05T13:00:00">filter them</a>.
+		</span>
+		<br/>
+		<br/>
         <form action="javascript:api_call();">
-            <label for="addr_tf">address</label>
-            <input type="text" id="addr_tf" value="http://export.finam.ru/SPFB.RTS-12.17_171205_171205.csv?market=14&em=453103&code=SPFB.RTS-12.17&apply=0&df=5&mf=11&yf=2017&from=05.12.2017&dt=5&mt=11&yt=2017&to=05.12.2017&p=7&f=SPFB.RTS-12.17_171205_171205&e=.csv&cn=SPFB.RTS-12.17&dtf=1&tmf=1&MSOR=0&mstime=on&mstimever=1&sep=1&sep2=1&datf=1&at=1"/>
+            <label for="addr_tf">Address</label>
+            <input type="text" id="addr_tf" style="width: 500px" value="http://export.finam.ru/SPFB.RTS-12.17_171205_171205.csv?market=14&em=453103&code=SPFB.RTS-12.17&apply=0&df=5&mf=11&yf=2017&from=05.12.2017&dt=5&mt=11&yt=2017&to=05.12.2017&p=7&f=SPFB.RTS-12.17_171205_171205&e=.csv&cn=SPFB.RTS-12.17&dtf=1&tmf=1&MSOR=0&mstime=on&mstimever=1&sep=1&sep2=1&datf=1&at=1"/>
             <input type="submit" value="Send request"/>
         </form>
         <br/>
-        <div id="resp_div" class="canhazbreaks"></div>
-        <hr/>
-        <div id="console_div" class="canhazbreaks"></div>
+		<table id="tasks"></table>
+		<hr/>
+		<table id="responses"></table>
+        
     </body>
 </html>
