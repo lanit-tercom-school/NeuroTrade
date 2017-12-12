@@ -24,7 +24,7 @@ namespace NeuroTradeAPI
                 try
                 {
                     var context = services.GetRequiredService<ApplicationContext>();
-                    context.Initialize();
+                    context.Initialize().Wait();
                 }
                 catch (Exception ex)
                 {

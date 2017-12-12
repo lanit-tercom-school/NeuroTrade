@@ -21,7 +21,10 @@ namespace NeuroTradeAPI.Controllers
             var context = new ApplicationContext();
 //            var instrums = context.Batches.GroupBy(batch => batch.Instrument.InstrumentId);
             var instrums2 = context.Instruments.Join(context.Batches, instr => instr.InstrumentId,
-                batch => batch.InstrumentId, (instr, batch) => new {instr, Batch = batch}).GroupBy(arg => arg.instr.Alias);
+                batch => batch.InstrumentId, (instr, batch) => new {instr, Batch = batch})
+                .OrderBy(arg => arg.Batch.BeginTime)
+                .ThenBy(arg => arg.Batch.BatchId)
+                .GroupBy(arg => arg.instr.Alias);
             return Json(from inst in instrums2
                 select new Dictionary<string, object>()
                 {
@@ -49,8 +52,10 @@ namespace NeuroTradeAPI.Controllers
                     return NotFound("Instrument not found");
                 var candles = context.Batches
                     .Where(_batch => _batch.InstrumentId == target.InstrumentId)
+                    .OrderBy(_batch => _batch.BeginTime)
                     .Join(context.Candles, batch1 => batch1.BatchId, candle => candle.BatchId,
                         (batch1, batchCandle) => new {batch1, batch_candle = batchCandle})
+                    .OrderBy(arg => arg.batch_candle.BeginTime)
                     .Where(arg => arg.batch_candle.BeginTime >= dtFrom && arg.batch_candle.BeginTime < dtTo)
                     .ToList();
                 
@@ -86,29 +91,14 @@ namespace NeuroTradeAPI.Controllers
                             {"From", dtFrom},
                             {"To", dtTo}
                         }
-                    }
-                    ,{"Result", from cndl in candles select cndl.toDict()}  
+                    },
+                    {"Result", from cndl in candles select cndl.toDict()}  
                 });
             }
             else
             {
                 return BadRequest("Please provide 'instrument' or 'batch' parameter");
             }
-            
-            
-//            var b = _context.Batches.Find(id);
-//            if (b == null)
-//                return NotFound("Batch not found");
-//            
-//            var batch = _context.Candles.Where(c => c.Batch == b);
-//            return Json(new Dictionary<string, object>()
-//            {
-//                {"Batch", b.toDict()},
-//                {
-//                    "Candles", 
-//                    from c in batch select c.toDict()
-//                }
-//            });
         }
 
         // POST api/v0/quotes
@@ -180,6 +170,7 @@ namespace NeuroTradeAPI.Controllers
 
                 // Converting and making sure there are valid candles
                 List<Candle> candles = new List<Candle>();
+                int limit_outp = 5;
                 foreach (Data data in response.dataList)
                 {
                     Candle c = Candle.ConvertData(data, 1);
@@ -188,7 +179,10 @@ namespace NeuroTradeAPI.Controllers
                     else
                     {
                         candles.Add(c);
-                        msg_pipe += string.Join("; ", c.toDict()) + '\n';
+                        if (limit_outp-- > 0)
+                            msg_pipe += string.Join("; ", c.toDict()) + '\n';
+                        if (limit_outp == 0)
+                            msg_pipe += "............. \n";
                     }
                 }
                 if (!candles.Any())
@@ -227,14 +221,46 @@ namespace NeuroTradeAPI.Controllers
                     InstrumentId = instrument.InstrumentId,
                     Interval = interval
                 };
-                await context.Batches.AddAsync(batch); // SORRY. I have no ideas about why async fails
-                await context.SaveChangesAsync();
+                context.Batches.Add(batch);
+                context.SaveChanges();
+
+                //Uniqueness check | Overwrite if interval is less than existing
+                var intersection = context.Batches
+                    .Where(_batch => _batch.InstrumentId == batch.InstrumentId)
+                    .Join(context.Candles, _batch => _batch.BatchId, candle => candle.BatchId,
+                        (_batch, batchCandle) => new {_batch, _candle = batchCandle})
+                    .Where(arg => arg._candle.BeginTime >= batch.BeginTime && arg._candle.BeginTime < batch.EndTime)
+                    .GroupBy(arg => arg._candle.BatchId)
+                    .ToList();
+                context.Database.BeginTransaction();
+                if (intersection.Any())
+                {
+                    msg_pipe += String.Format("Found {0} existing batches within downloaded data interval: {1}\n",
+                        intersection.Count(), string.Join(", ", from _batch in intersection select _batch.Key));
+                    int forDeletion = 0;
+                    foreach (var _batch in intersection)
+                    {
+                        foreach (var btc_cndl in _batch)
+                        {
+                            if (batch.Interval >= btc_cndl._candle.Batch.Interval)
+                            {
+                                msg_pipe += "Downloaded data intersects existing candles and doesn't refine them\n";
+                                return;
+                            }
+                            forDeletion++;
+                            context.Candles.Remove(btc_cndl._candle);
+                        }
+                    }
+                    msg_pipe += String.Format("Number of candles to be deleted: {0}\n", forDeletion);
+                }
+
                 msg_pipe += string.Format("Current batch's id is {0}\n", batch.BatchId);
 
                 candles.ForEach(c => c.BatchId = batch.BatchId);
-                await context.Candles.AddRangeAsync(candles);
-                await context.SaveChangesAsync();
-                msg_pipe += string.Format("That's all\n");
+                context.Candles.AddRange(candles);
+                context.Database.CommitTransaction();
+                context.SaveChanges();
+                msg_pipe += string.Format("That's all folks\n");
             }
             catch (NpgsqlException e)
             {
@@ -242,7 +268,11 @@ namespace NeuroTradeAPI.Controllers
             }
             catch (NullReferenceException e)
             {
-                msg_pipe += "No data there\n";
+                msg_pipe += String.Format("No data exception:\n{0}\n", e.ToString());
+            }
+            catch (Exception e)
+            {
+                msg_pipe += String.Format("Time to revise the code: {0}", e.ToString());
             }
             Console.WriteLine(msg_pipe);
         }

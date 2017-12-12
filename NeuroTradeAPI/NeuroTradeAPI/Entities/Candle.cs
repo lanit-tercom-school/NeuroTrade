@@ -50,7 +50,7 @@ namespace NeuroTradeAPI.Entities
                 {"low", Low},
                 {"high", High},
                 {"volume", Volume},
-                {"per", Batch.Interval}
+                {"per", Batch != null ? Batch.Interval.ToString() : "¯\\_(ツ)_/¯"}
             };
         }
     }

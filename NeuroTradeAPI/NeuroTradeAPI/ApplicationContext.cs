@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using NeuroTradeAPI.Entities;
 
@@ -27,7 +28,7 @@ namespace NeuroTradeAPI
         {
         }
         
-        public async void Initialize()
+        public async Task Initialize()
         {
             Database.EnsureCreated();
             bool nonempty = await Instruments.AnyAsync(); 

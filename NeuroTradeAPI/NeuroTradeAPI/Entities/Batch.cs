@@ -20,7 +20,8 @@ namespace NeuroTradeAPI.Entities
             return new Dictionary<string, object>()
             {
                 {"id", BatchId},
-                {"Start", BeginTime.ToString()},
+                {"Start", BeginTime},
+                {"End", EndTime},
                 {"Interval", Interval}
             };
         }
