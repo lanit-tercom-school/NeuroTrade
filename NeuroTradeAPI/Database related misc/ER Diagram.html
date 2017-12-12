@@ -213,10 +213,6 @@ body {
     <path d='M 7.50,0.00 L 7.50, 7.50 z' />
     <path d='M 0.00,0.00 L 7.50,3.75 L 0.00,7.50' />
   </marker>
-  <linearGradient id='tbg_c8f5bf' x1='0%' y1='0%' x2='0%' y2='100%' >
-     <stop offset='0%' stop-color='#c5f1bc' /> 
-     <stop offset='100%' stop-color='#c5f1bc' /> 
-  </linearGradient>
   <linearGradient id='tbg_bfd4f5' x1='0%' y1='0%' x2='0%' y2='100%' >
      <stop offset='0%' stop-color='#bcd1f1' /> 
      <stop offset='100%' stop-color='#bcd1f1' /> 
@@ -225,8 +221,11 @@ body {
      <stop offset='0%' stop-color='#bcd5f1' /> 
      <stop offset='100%' stop-color='#bcd5f1' /> 
   </linearGradient>
+  <linearGradient id='tbg_c8f5bf' x1='0%' y1='0%' x2='0%' y2='100%' >
+     <stop offset='0%' stop-color='#c5f1bc' /> 
+     <stop offset='100%' stop-color='#c5f1bc' /> 
+  </linearGradient>
 </defs>
-
 
 <!-- == Legend == -->
 <g transform='translate(10,10)'>
@@ -247,6 +246,22 @@ body {
 <text x='40' y='55'>Data</text>
 <rect style='fill:url(#groupUnderTitleLine); stroke-width:2;' x='40' y='58' width='280' height='2' />
 
+<!-- == Fk 'TrainedModels_FK_TrainedModels_Algorithms_AlgorithmId' == -->
+<path id='TrainedModels_FK_TrainedModels_Algorithms_AlgorithmId'  onmouseover="hghl(['TrainedModels_FK_TrainedModels_Algorithms_AlgorithmId','public.TrainedModels.AlgorithmId','public.Algorithms.AlgorithmId'])" onmouseout="uhghl(['TrainedModels_FK_TrainedModels_Algorithms_AlgorithmId','public.TrainedModels.AlgorithmId','public.Algorithms.AlgorithmId'])" transform='translate(7,0)' class='scene' d='M 450 240 L 450,180' >
+	<title>Fk FK_TrainedModels_Algorithms_AlgorithmId
+TrainedModels ref Algorithms ( AlgorithmId )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 450 240 L 450,180' ></path>
+<text x='452' y='235' transform='rotate(270 452,235)' title='Fk FK_TrainedModels_Algorithms_AlgorithmId
+TrainedModels ref Algorithms ( AlgorithmId )' class='relName' style='fill:#4d6fa2'>AlgorithmId</text>
+<!-- == Fk 'TrainedModels_FK_TrainedModels_Instruments_InstrumentId' == -->
+<path id='TrainedModels_FK_TrainedModels_Instruments_InstrumentId'  onmouseover="hghl(['TrainedModels_FK_TrainedModels_Instruments_InstrumentId','public.TrainedModels.InstrumentId','public.Instruments.InstrumentId'])" onmouseout="uhghl(['TrainedModels_FK_TrainedModels_Instruments_InstrumentId','public.TrainedModels.InstrumentId','public.Instruments.InstrumentId'])" transform='translate(7,0)' class='scene' d='M 405 255 L 217,255 Q 210,255 210,247 L 210,165' >
+	<title>Fk FK_TrainedModels_Instruments_InstrumentId
+TrainedModels ref Instruments ( InstrumentId )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 405 255 L 217,255 Q 210,255 210,247 L 210,165' ></path>
+<text x='349' y='250' transform='rotate(0 349,250)' title='Fk FK_TrainedModels_Instruments_InstrumentId
+TrainedModels ref Instruments ( InstrumentId )' class='relName' style='fill:#4d6fa2'>InstrumentId</text>
 <!-- == Fk 'Algorithms_FK_Algorithms_Users_UserId' == -->
 <path id='Algorithms_FK_Algorithms_Users_UserId'  onmouseover="hghl(['Algorithms_FK_Algorithms_Users_UserId','public.Algorithms.UserId','public.Users.UserId'])" onmouseout="uhghl(['Algorithms_FK_Algorithms_Users_UserId','public.Algorithms.UserId','public.Users.UserId'])" transform='translate(7,0)' class='scene' d='M 525 90 L 570,90' >
 	<title>Fk FK_Algorithms_Users_UserId
@@ -271,145 +286,6 @@ Batches ref Instruments ( InstrumentId )</title>
 <path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 135 270 L 135,165' ></path>
 <text x='137' y='265' transform='rotate(270 137,265)' title='Fk FK_Batches_Instruments_InstrumentId
 Batches ref Instruments ( InstrumentId )' class='relName' style='fill:#5da24d'>InstrumentId</text>
-<!-- == Fk 'TrainedModels_FK_TrainedModels_Algorithms_AlgorithmId' == -->
-<path id='TrainedModels_FK_TrainedModels_Algorithms_AlgorithmId'  onmouseover="hghl(['TrainedModels_FK_TrainedModels_Algorithms_AlgorithmId','public.TrainedModels.AlgorithmId','public.Algorithms.AlgorithmId'])" onmouseout="uhghl(['TrainedModels_FK_TrainedModels_Algorithms_AlgorithmId','public.TrainedModels.AlgorithmId','public.Algorithms.AlgorithmId'])" transform='translate(7,0)' class='scene' d='M 450 240 L 450,180' >
-	<title>Fk FK_TrainedModels_Algorithms_AlgorithmId
-TrainedModels ref Algorithms ( AlgorithmId )</title>
-</path>
-<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 450 240 L 450,180' ></path>
-<text x='452' y='235' transform='rotate(270 452,235)' title='Fk FK_TrainedModels_Algorithms_AlgorithmId
-TrainedModels ref Algorithms ( AlgorithmId )' class='relName' style='fill:#4d6fa2'>AlgorithmId</text>
-<!-- == Fk 'TrainedModels_FK_TrainedModels_Instruments_InstrumentId' == -->
-<path id='TrainedModels_FK_TrainedModels_Instruments_InstrumentId'  onmouseover="hghl(['TrainedModels_FK_TrainedModels_Instruments_InstrumentId','public.TrainedModels.InstrumentId','public.Instruments.InstrumentId'])" onmouseout="uhghl(['TrainedModels_FK_TrainedModels_Instruments_InstrumentId','public.TrainedModels.InstrumentId','public.Instruments.InstrumentId'])" transform='translate(7,0)' class='scene' d='M 405 255 L 217,255 Q 210,255 210,247 L 210,165' >
-	<title>Fk FK_TrainedModels_Instruments_InstrumentId
-TrainedModels ref Instruments ( InstrumentId )</title>
-</path>
-<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 405 255 L 217,255 Q 210,255 210,247 L 210,165' ></path>
-<text x='349' y='250' transform='rotate(0 349,250)' title='Fk FK_TrainedModels_Instruments_InstrumentId
-TrainedModels ref Instruments ( InstrumentId )' class='relName' style='fill:#4d6fa2'>InstrumentId</text>
-<!-- == Table 'Instruments' == -->
-<rect class='entity' x='120' y='68' width='105' height='90' rx='7' ry='7' style='stroke:none'/>
-<path d='M 120 94 L 120 75 Q 120 68 127 68 L 218 68 Q 225 68 225 75 L 225 94 L120 94 ' style='fill:url(#tbg_c8f5bf);stroke:1;stroke-opacity:0.1;' />
-<rect class='entity' x='120' y='68' width='105' height='90' rx='7' ry='7' style='fill:none;stroke:#9fce95'/>
-<line class='delim' x1='120' y1='94' x2='225' y2='94' style='stroke:#9fce95'/>
-<line class='delim' x1='135' y1='94' x2='135' y2='158' style='stroke:#9fce95'/>
-<line class='delim' x1='214' y1='94' x2='214' y2='158' style='stroke:#9fce95'/>
-<a xlink:href='#Instruments'><text x='140' y='86'>Instruments</text><title>Table public.Instruments</title></a>
-  <use id='nn' x='122' y='102' xlink:href='#nn'/><a xlink:href='#Instruments.InstrumentId'><use id='pk' x='122' y='101' xlink:href='#pk'/><title>Pk PK_Instruments ( InstrumentId ) </title></a>
-<a xlink:href='#Instruments.InstrumentId'><text id='public.Instruments.InstrumentId' x='138' y='111' onmouseover="hghl(['Batches_FK_Batches_Instruments_InstrumentId','public.Batches.InstrumentId','TrainedModels_FK_TrainedModels_Instruments_InstrumentId','public.TrainedModels.InstrumentId'])" onmouseout="uhghl(['Batches_FK_Batches_Instruments_InstrumentId','public.Batches.InstrumentId','TrainedModels_FK_TrainedModels_Instruments_InstrumentId','public.TrainedModels.InstrumentId'])">InstrumentId</text><title>InstrumentId
-* serial</title></a>
-<a xlink:href='#Instruments.InstrumentId'><use id='ref' x='214' y='101' xlink:href='#ref'/><title>Referred by Batches ( InstrumentId ) 
-Referred by TrainedModels ( InstrumentId ) </title></a>
-  <a xlink:href='#Instruments.Alias'><text id='public.Instruments.Alias' x='138' y='126'>Alias</text><title>Alias
-text</title></a>
-<text x='222' y='123' text-anchor='end' class='colType'>t</text>  <a xlink:href='#Instruments.DownloadAlias'><text id='public.Instruments.DownloadAlias' x='138' y='141'>DownloadAlias</text><title>DownloadAlias
-text</title></a>
-<text x='222' y='138' text-anchor='end' class='colType'>t</text>
-<!-- == Table 'Algorithms' == -->
-<rect class='entity' x='435' y='68' width='90' height='105' rx='7' ry='7' style='stroke:none'/>
-<path d='M 435 94 L 435 75 Q 435 68 442 68 L 518 68 Q 525 68 525 75 L 525 94 L435 94 ' style='fill:url(#tbg_bfd4f5);stroke:1;stroke-opacity:0.1;' />
-<rect class='entity' x='435' y='68' width='90' height='105' rx='7' ry='7' style='fill:none;stroke:#95abce'/>
-<line class='delim' x1='435' y1='94' x2='525' y2='94' style='stroke:#95abce'/>
-<line class='delim' x1='450' y1='94' x2='450' y2='173' style='stroke:#95abce'/>
-<line class='delim' x1='514' y1='94' x2='514' y2='173' style='stroke:#95abce'/>
-<a xlink:href='#Algorithms'><text x='452' y='86'>Algorithms</text><title>Table public.Algorithms</title></a>
-  <use id='nn' x='437' y='102' xlink:href='#nn'/><a xlink:href='#Algorithms.AlgorithmId'><use id='pk' x='437' y='101' xlink:href='#pk'/><title>Pk PK_Algorithms ( AlgorithmId ) </title></a>
-<a xlink:href='#Algorithms.AlgorithmId'><text id='public.Algorithms.AlgorithmId' x='453' y='111' onmouseover="hghl(['TrainedModels_FK_TrainedModels_Algorithms_AlgorithmId','public.TrainedModels.AlgorithmId'])" onmouseout="uhghl(['TrainedModels_FK_TrainedModels_Algorithms_AlgorithmId','public.TrainedModels.AlgorithmId'])">AlgorithmId</text><title>AlgorithmId
-* serial</title></a>
-<a xlink:href='#Algorithms.AlgorithmId'><use id='ref' x='514' y='101' xlink:href='#ref'/><title>Referred by TrainedModels ( AlgorithmId ) </title></a>
-  <a xlink:href='#Algorithms.Path'><text id='public.Algorithms.Path' x='453' y='126'>Path</text><title>Path
-text</title></a>
-<text x='522' y='123' text-anchor='end' class='colType'>t</text>  <use id='nn' x='437' y='132' xlink:href='#nn'/><a xlink:href='#Algorithms.UserId'><use id='idx' x='437' y='131' xlink:href='#idx'/><title>IX_Algorithms_UserId ( UserId ) </title></a>
-<a xlink:href='#Algorithms.UserId'><text id='public.Algorithms.UserId' x='453' y='141' onmouseover="hghl(['Algorithms_FK_Algorithms_Users_UserId','public.Users.UserId'])" onmouseout="uhghl(['Algorithms_FK_Algorithms_Users_UserId','public.Users.UserId'])">UserId</text><title>UserId
-* integer</title></a>
-<a xlink:href='#Algorithms.UserId'><use id='fk' x='514' y='131' xlink:href='#fk'/><title>References Users ( UserId ) </title></a>
-  <a xlink:href='#Algorithms.Description'><text id='public.Algorithms.Description' x='453' y='156'>Description</text><title>Description
-text</title></a>
-<text x='522' y='153' text-anchor='end' class='colType'>t</text>
-<!-- == Table 'Candles' == -->
-<rect class='entity' x='225' y='278' width='90' height='165' rx='7' ry='7' style='stroke:none'/>
-<path d='M 225 304 L 225 285 Q 225 278 232 278 L 308 278 Q 315 278 315 285 L 315 304 L225 304 ' style='fill:url(#tbg_c8f5bf);stroke:1;stroke-opacity:0.1;' />
-<rect class='entity' x='225' y='278' width='90' height='165' rx='7' ry='7' style='fill:none;stroke:#9fce95'/>
-<line class='delim' x1='225' y1='304' x2='315' y2='304' style='stroke:#9fce95'/>
-<line class='delim' x1='240' y1='304' x2='240' y2='443' style='stroke:#9fce95'/>
-<line class='delim' x1='304' y1='304' x2='304' y2='443' style='stroke:#9fce95'/>
-<a xlink:href='#Candles'><text x='248' y='296'>Candles</text><title>Table public.Candles</title></a>
-  <use id='nn' x='227' y='312' xlink:href='#nn'/><a xlink:href='#Candles.CandleId'><use id='pk' x='227' y='311' xlink:href='#pk'/><title>Pk PK_Candles ( CandleId ) </title></a>
-<a xlink:href='#Candles.CandleId'><text id='public.Candles.CandleId' x='243' y='321'>CandleId</text><title>CandleId
-* bigserial</title></a>
-<text x='312' y='318' text-anchor='end' class='colType'>#</text>  <use id='nn' x='227' y='327' xlink:href='#nn'/><a xlink:href='#Candles.BatchId'><use id='idx' x='227' y='326' xlink:href='#idx'/><title>IX_Candles_BatchId ( BatchId ) </title></a>
-<a xlink:href='#Candles.BatchId'><text id='public.Candles.BatchId' x='243' y='336' onmouseover="hghl(['Candles_FK_Candles_Batches_BatchId','public.Batches.BatchId'])" onmouseout="uhghl(['Candles_FK_Candles_Batches_BatchId','public.Batches.BatchId'])">BatchId</text><title>BatchId
-* integer</title></a>
-<a xlink:href='#Candles.BatchId'><use id='fk' x='304' y='326' xlink:href='#fk'/><title>References Batches ( BatchId ) </title></a>
-  <a xlink:href='#Candles.BeginTime'><text id='public.Candles.BeginTime' x='243' y='351'>BeginTime</text><title>BeginTime
-timestamp</title></a>
-<text x='312' y='348' text-anchor='end' class='colType'>d</text>  <use id='nn' x='227' y='357' xlink:href='#nn'/><a xlink:href='#Candles.Close'><text id='public.Candles.Close' x='243' y='366'>Close</text><title>Close
-* real</title></a>
-<text x='312' y='363' text-anchor='end' class='colType'>#</text>  <use id='nn' x='227' y='372' xlink:href='#nn'/><a xlink:href='#Candles.High'><text id='public.Candles.High' x='243' y='381'>High</text><title>High
-* real</title></a>
-<text x='312' y='378' text-anchor='end' class='colType'>#</text>  <use id='nn' x='227' y='387' xlink:href='#nn'/><a xlink:href='#Candles.Low'><text id='public.Candles.Low' x='243' y='396'>Low</text><title>Low
-* real</title></a>
-<text x='312' y='393' text-anchor='end' class='colType'>#</text>  <use id='nn' x='227' y='402' xlink:href='#nn'/><a xlink:href='#Candles.Open'><text id='public.Candles.Open' x='243' y='411'>Open</text><title>Open
-* real</title></a>
-<text x='312' y='408' text-anchor='end' class='colType'>#</text>  <use id='nn' x='227' y='417' xlink:href='#nn'/><a xlink:href='#Candles.Volume'><text id='public.Candles.Volume' x='243' y='426'>Volume</text><title>Volume
-* integer</title></a>
-<text x='312' y='423' text-anchor='end' class='colType'>#</text>
-<!-- == Table 'Batches' == -->
-<rect class='entity' x='45' y='278' width='105' height='120' rx='7' ry='7' style='stroke:none'/>
-<path d='M 45 304 L 45 285 Q 45 278 52 278 L 143 278 Q 150 278 150 285 L 150 304 L45 304 ' style='fill:url(#tbg_c8f5bf);stroke:1;stroke-opacity:0.1;' />
-<rect class='entity' x='45' y='278' width='105' height='120' rx='7' ry='7' style='fill:none;stroke:#9fce95'/>
-<line class='delim' x1='45' y1='304' x2='150' y2='304' style='stroke:#9fce95'/>
-<line class='delim' x1='60' y1='304' x2='60' y2='398' style='stroke:#9fce95'/>
-<line class='delim' x1='139' y1='304' x2='139' y2='398' style='stroke:#9fce95'/>
-<a xlink:href='#Batches'><text x='75' y='296'>Batches</text><title>Table public.Batches</title></a>
-  <use id='nn' x='47' y='312' xlink:href='#nn'/><a xlink:href='#Batches.BatchId'><use id='pk' x='47' y='311' xlink:href='#pk'/><title>Pk PK_Batches ( BatchId ) </title></a>
-<a xlink:href='#Batches.BatchId'><text id='public.Batches.BatchId' x='63' y='321' onmouseover="hghl(['Candles_FK_Candles_Batches_BatchId','public.Candles.BatchId'])" onmouseout="uhghl(['Candles_FK_Candles_Batches_BatchId','public.Candles.BatchId'])">BatchId</text><title>BatchId
-* serial</title></a>
-<a xlink:href='#Batches.BatchId'><use id='ref' x='139' y='311' xlink:href='#ref'/><title>Referred by Candles ( BatchId ) </title></a>
-  <use id='nn' x='47' y='327' xlink:href='#nn'/><a xlink:href='#Batches.BeginTime'><text id='public.Batches.BeginTime' x='63' y='336'>BeginTime</text><title>BeginTime
-* timestamp</title></a>
-<text x='147' y='333' text-anchor='end' class='colType'>d</text>  <a xlink:href='#Batches.EndTime'><text id='public.Batches.EndTime' x='63' y='351'>EndTime</text><title>EndTime
-timestamp</title></a>
-<text x='147' y='348' text-anchor='end' class='colType'>d</text>  <use id='nn' x='47' y='357' xlink:href='#nn'/><a xlink:href='#Batches.InstrumentId'><use id='idx' x='47' y='356' xlink:href='#idx'/><title>IX_Batches_InstrumentId ( InstrumentId ) </title></a>
-<a xlink:href='#Batches.InstrumentId'><text id='public.Batches.InstrumentId' x='63' y='366' onmouseover="hghl(['Batches_FK_Batches_Instruments_InstrumentId','public.Instruments.InstrumentId'])" onmouseout="uhghl(['Batches_FK_Batches_Instruments_InstrumentId','public.Instruments.InstrumentId'])">InstrumentId</text><title>InstrumentId
-* integer</title></a>
-<a xlink:href='#Batches.InstrumentId'><use id='fk' x='139' y='356' xlink:href='#fk'/><title>References Instruments ( InstrumentId ) </title></a>
-  <use id='nn' x='47' y='372' xlink:href='#nn'/><a xlink:href='#Batches.Interval'><text id='public.Batches.Interval' x='63' y='381'>Interval</text><title>Interval
-* interval</title></a>
-
-<!-- == Table 'Users' == -->
-<rect class='entity' x='585' y='68' width='90' height='105' rx='7' ry='7' style='stroke:none'/>
-<path d='M 585 94 L 585 75 Q 585 68 592 68 L 668 68 Q 675 68 675 75 L 675 94 L585 94 ' style='fill:url(#tbg_bfd4f5);stroke:1;stroke-opacity:0.1;' />
-<rect class='entity' x='585' y='68' width='90' height='105' rx='7' ry='7' style='fill:none;stroke:#95abce'/>
-<line class='delim' x1='585' y1='94' x2='675' y2='94' style='stroke:#95abce'/>
-<line class='delim' x1='600' y1='94' x2='600' y2='173' style='stroke:#95abce'/>
-<line class='delim' x1='664' y1='94' x2='664' y2='173' style='stroke:#95abce'/>
-<a xlink:href='#Users'><text x='613' y='86'>Users</text><title>Table public.Users</title></a>
-  <use id='nn' x='587' y='102' xlink:href='#nn'/><a xlink:href='#Users.UserId'><use id='pk' x='587' y='101' xlink:href='#pk'/><title>Pk PK_Users ( UserId ) </title></a>
-<a xlink:href='#Users.UserId'><text id='public.Users.UserId' x='603' y='111' onmouseover="hghl(['Algorithms_FK_Algorithms_Users_UserId','public.Algorithms.UserId'])" onmouseout="uhghl(['Algorithms_FK_Algorithms_Users_UserId','public.Algorithms.UserId'])">UserId</text><title>UserId
-* serial</title></a>
-<a xlink:href='#Users.UserId'><use id='ref' x='664' y='101' xlink:href='#ref'/><title>Referred by Algorithms ( UserId ) </title></a>
-  <a xlink:href='#Users.Email'><text id='public.Users.Email' x='603' y='126'>Email</text><title>Email
-text</title></a>
-<text x='672' y='123' text-anchor='end' class='colType'>t</text>  <a xlink:href='#Users.Name'><text id='public.Users.Name' x='603' y='141'>Name</text><title>Name
-text</title></a>
-<text x='672' y='138' text-anchor='end' class='colType'>t</text>  <a xlink:href='#Users.Password'><text id='public.Users.Password' x='603' y='156'>Password</text><title>Password
-text</title></a>
-<text x='672' y='153' text-anchor='end' class='colType'>t</text>
-<!-- == Table '__EFMigrationsHistory' == -->
-<rect class='entity' x='585' y='263' width='120' height='75' rx='7' ry='7' style='stroke:none'/>
-<path d='M 585 289 L 585 270 Q 585 263 592 263 L 698 263 Q 705 263 705 270 L 705 289 L585 289 ' style='fill:url(#tbg_bcd5f1);stroke:1;stroke-opacity:0.1;' />
-<rect class='entity' x='585' y='263' width='120' height='75' rx='7' ry='7' style='fill:none;stroke:#95b0ce'/>
-<line class='delim' x1='585' y1='289' x2='705' y2='289' style='stroke:#95b0ce'/>
-<line class='delim' x1='600' y1='289' x2='600' y2='338' style='stroke:#95b0ce'/>
-<line class='delim' x1='694' y1='289' x2='694' y2='338' style='stroke:#95b0ce'/>
-<a xlink:href='#__EFMigrationsHistory'><text x='588' y='281'>__EFMigrationsHistory</text><title>Table public.__EFMigrationsHistory</title></a>
-  <use id='nn' x='587' y='297' xlink:href='#nn'/><a xlink:href='#__EFMigrationsHistory.MigrationId'><use id='pk' x='587' y='296' xlink:href='#pk'/><title>Pk PK___EFMigrationsHistory ( MigrationId ) </title></a>
-<a xlink:href='#__EFMigrationsHistory.MigrationId'><text id='public.__EFMigrationsHistory.MigrationId' x='603' y='306'>MigrationId</text><title>MigrationId
-* varchar(150)</title></a>
-<text x='702' y='303' text-anchor='end' class='colType'>t</text>  <use id='nn' x='587' y='312' xlink:href='#nn'/><a xlink:href='#__EFMigrationsHistory.ProductVersion'><text id='public.__EFMigrationsHistory.ProductVersion' x='603' y='321'>ProductVersion</text><title>ProductVersion
-* varchar(32)</title></a>
-<text x='702' y='318' text-anchor='end' class='colType'>t</text>
 <!-- == Table 'TrainedModels' == -->
 <rect class='entity' x='420' y='248' width='105' height='195' rx='7' ry='7' style='stroke:none'/>
 <path d='M 420 274 L 420 255 Q 420 248 427 248 L 518 248 Q 525 248 525 255 L 525 274 L420 274 ' style='fill:url(#tbg_bfd4f5);stroke:1;stroke-opacity:0.1;' />
@@ -444,7 +320,507 @@ jsonb</title></a>
 <text x='522' y='408' text-anchor='end' class='colType'>d</text>  <use id='nn' x='422' y='417' xlink:href='#nn'/><a xlink:href='#TrainedModels.TrainEnd'><text id='public.TrainedModels.TrainEnd' x='438' y='426'>TrainEnd</text><title>TrainEnd
 * timestamp</title></a>
 <text x='522' y='423' text-anchor='end' class='colType'>d</text>
+<!-- == Table 'Users' == -->
+<rect class='entity' x='585' y='68' width='90' height='105' rx='7' ry='7' style='stroke:none'/>
+<path d='M 585 94 L 585 75 Q 585 68 592 68 L 668 68 Q 675 68 675 75 L 675 94 L585 94 ' style='fill:url(#tbg_bfd4f5);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='585' y='68' width='90' height='105' rx='7' ry='7' style='fill:none;stroke:#95abce'/>
+<line class='delim' x1='585' y1='94' x2='675' y2='94' style='stroke:#95abce'/>
+<line class='delim' x1='600' y1='94' x2='600' y2='173' style='stroke:#95abce'/>
+<line class='delim' x1='664' y1='94' x2='664' y2='173' style='stroke:#95abce'/>
+<a xlink:href='#Users'><text x='613' y='86'>Users</text><title>Table public.Users</title></a>
+  <use id='nn' x='587' y='102' xlink:href='#nn'/><a xlink:href='#Users.UserId'><use id='pk' x='587' y='101' xlink:href='#pk'/><title>Pk PK_Users ( UserId ) </title></a>
+<a xlink:href='#Users.UserId'><text id='public.Users.UserId' x='603' y='111' onmouseover="hghl(['Algorithms_FK_Algorithms_Users_UserId','public.Algorithms.UserId'])" onmouseout="uhghl(['Algorithms_FK_Algorithms_Users_UserId','public.Algorithms.UserId'])">UserId</text><title>UserId
+* serial</title></a>
+<a xlink:href='#Users.UserId'><use id='ref' x='664' y='101' xlink:href='#ref'/><title>Referred by Algorithms ( UserId ) </title></a>
+  <a xlink:href='#Users.Email'><text id='public.Users.Email' x='603' y='126'>Email</text><title>Email
+text</title></a>
+<text x='672' y='123' text-anchor='end' class='colType'>t</text>  <a xlink:href='#Users.Name'><text id='public.Users.Name' x='603' y='141'>Name</text><title>Name
+text</title></a>
+<text x='672' y='138' text-anchor='end' class='colType'>t</text>  <a xlink:href='#Users.Password'><text id='public.Users.Password' x='603' y='156'>Password</text><title>Password
+text</title></a>
+<text x='672' y='153' text-anchor='end' class='colType'>t</text>
+<!-- == Table 'Algorithms' == -->
+<rect class='entity' x='435' y='68' width='90' height='105' rx='7' ry='7' style='stroke:none'/>
+<path d='M 435 94 L 435 75 Q 435 68 442 68 L 518 68 Q 525 68 525 75 L 525 94 L435 94 ' style='fill:url(#tbg_bfd4f5);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='435' y='68' width='90' height='105' rx='7' ry='7' style='fill:none;stroke:#95abce'/>
+<line class='delim' x1='435' y1='94' x2='525' y2='94' style='stroke:#95abce'/>
+<line class='delim' x1='450' y1='94' x2='450' y2='173' style='stroke:#95abce'/>
+<line class='delim' x1='514' y1='94' x2='514' y2='173' style='stroke:#95abce'/>
+<a xlink:href='#Algorithms'><text x='452' y='86'>Algorithms</text><title>Table public.Algorithms</title></a>
+  <use id='nn' x='437' y='102' xlink:href='#nn'/><a xlink:href='#Algorithms.AlgorithmId'><use id='pk' x='437' y='101' xlink:href='#pk'/><title>Pk PK_Algorithms ( AlgorithmId ) </title></a>
+<a xlink:href='#Algorithms.AlgorithmId'><text id='public.Algorithms.AlgorithmId' x='453' y='111' onmouseover="hghl(['TrainedModels_FK_TrainedModels_Algorithms_AlgorithmId','public.TrainedModels.AlgorithmId'])" onmouseout="uhghl(['TrainedModels_FK_TrainedModels_Algorithms_AlgorithmId','public.TrainedModels.AlgorithmId'])">AlgorithmId</text><title>AlgorithmId
+* serial</title></a>
+<a xlink:href='#Algorithms.AlgorithmId'><use id='ref' x='514' y='101' xlink:href='#ref'/><title>Referred by TrainedModels ( AlgorithmId ) </title></a>
+  <a xlink:href='#Algorithms.Path'><text id='public.Algorithms.Path' x='453' y='126'>Path</text><title>Path
+text</title></a>
+<text x='522' y='123' text-anchor='end' class='colType'>t</text>  <use id='nn' x='437' y='132' xlink:href='#nn'/><a xlink:href='#Algorithms.UserId'><use id='idx' x='437' y='131' xlink:href='#idx'/><title>IX_Algorithms_UserId ( UserId ) </title></a>
+<a xlink:href='#Algorithms.UserId'><text id='public.Algorithms.UserId' x='453' y='141' onmouseover="hghl(['Algorithms_FK_Algorithms_Users_UserId','public.Users.UserId'])" onmouseout="uhghl(['Algorithms_FK_Algorithms_Users_UserId','public.Users.UserId'])">UserId</text><title>UserId
+* integer</title></a>
+<a xlink:href='#Algorithms.UserId'><use id='fk' x='514' y='131' xlink:href='#fk'/><title>References Users ( UserId ) </title></a>
+  <a xlink:href='#Algorithms.Description'><text id='public.Algorithms.Description' x='453' y='156'>Description</text><title>Description
+text</title></a>
+<text x='522' y='153' text-anchor='end' class='colType'>t</text>
+<!-- == Table '__EFMigrationsHistory' == -->
+<rect class='entity' x='585' y='263' width='120' height='75' rx='7' ry='7' style='stroke:none'/>
+<path d='M 585 289 L 585 270 Q 585 263 592 263 L 698 263 Q 705 263 705 270 L 705 289 L585 289 ' style='fill:url(#tbg_bcd5f1);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='585' y='263' width='120' height='75' rx='7' ry='7' style='fill:none;stroke:#95b0ce'/>
+<line class='delim' x1='585' y1='289' x2='705' y2='289' style='stroke:#95b0ce'/>
+<line class='delim' x1='600' y1='289' x2='600' y2='338' style='stroke:#95b0ce'/>
+<line class='delim' x1='694' y1='289' x2='694' y2='338' style='stroke:#95b0ce'/>
+<a xlink:href='#__EFMigrationsHistory'><text x='588' y='281'>__EFMigrationsHistory</text><title>Table public.__EFMigrationsHistory</title></a>
+  <use id='nn' x='587' y='297' xlink:href='#nn'/><a xlink:href='#__EFMigrationsHistory.MigrationId'><use id='pk' x='587' y='296' xlink:href='#pk'/><title>Pk PK___EFMigrationsHistory ( MigrationId ) </title></a>
+<a xlink:href='#__EFMigrationsHistory.MigrationId'><text id='public.__EFMigrationsHistory.MigrationId' x='603' y='306'>MigrationId</text><title>MigrationId
+* varchar(150)</title></a>
+<text x='702' y='303' text-anchor='end' class='colType'>t</text>  <use id='nn' x='587' y='312' xlink:href='#nn'/><a xlink:href='#__EFMigrationsHistory.ProductVersion'><text id='public.__EFMigrationsHistory.ProductVersion' x='603' y='321'>ProductVersion</text><title>ProductVersion
+* varchar(32)</title></a>
+<text x='702' y='318' text-anchor='end' class='colType'>t</text>
+<!-- == Table 'Candles' == -->
+<rect class='entity' x='225' y='278' width='90' height='165' rx='7' ry='7' style='stroke:none'/>
+<path d='M 225 304 L 225 285 Q 225 278 232 278 L 308 278 Q 315 278 315 285 L 315 304 L225 304 ' style='fill:url(#tbg_c8f5bf);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='225' y='278' width='90' height='165' rx='7' ry='7' style='fill:none;stroke:#9fce95'/>
+<line class='delim' x1='225' y1='304' x2='315' y2='304' style='stroke:#9fce95'/>
+<line class='delim' x1='240' y1='304' x2='240' y2='443' style='stroke:#9fce95'/>
+<line class='delim' x1='304' y1='304' x2='304' y2='443' style='stroke:#9fce95'/>
+<a xlink:href='#Candles'><text x='248' y='296'>Candles</text><title>Table public.Candles</title></a>
+  <use id='nn' x='227' y='312' xlink:href='#nn'/><a xlink:href='#Candles.CandleId'><use id='pk' x='227' y='311' xlink:href='#pk'/><title>Pk PK_Candles ( CandleId ) </title></a>
+<a xlink:href='#Candles.CandleId'><text id='public.Candles.CandleId' x='243' y='321'>CandleId</text><title>CandleId
+* bigserial</title></a>
+<text x='312' y='318' text-anchor='end' class='colType'>#</text>  <use id='nn' x='227' y='327' xlink:href='#nn'/><a xlink:href='#Candles.BatchId'><use id='unq' x='227' y='326' xlink:href='#unq'/><title>IX_Candles_BatchId ( BatchId ) Unq unq_inside_batch ( BatchId, BeginTime ) </title></a>
+<a xlink:href='#Candles.BatchId'><text id='public.Candles.BatchId' x='243' y='336' onmouseover="hghl(['Candles_FK_Candles_Batches_BatchId','public.Batches.BatchId'])" onmouseout="uhghl(['Candles_FK_Candles_Batches_BatchId','public.Batches.BatchId'])">BatchId</text><title>BatchId
+* integer</title></a>
+<a xlink:href='#Candles.BatchId'><use id='fk' x='304' y='326' xlink:href='#fk'/><title>References Batches ( BatchId ) </title></a>
+  <use id='nn' x='227' y='342' xlink:href='#nn'/><a xlink:href='#Candles.BeginTime'><use id='unq' x='227' y='341' xlink:href='#unq'/><title>Unq unq_inside_batch ( BatchId, BeginTime ) ix_time ( BeginTime ) </title></a>
+<a xlink:href='#Candles.BeginTime'><text id='public.Candles.BeginTime' x='243' y='351'>BeginTime</text><title>BeginTime
+* timestamp</title></a>
+<text x='312' y='348' text-anchor='end' class='colType'>d</text>  <use id='nn' x='227' y='357' xlink:href='#nn'/><a xlink:href='#Candles.Close'><text id='public.Candles.Close' x='243' y='366'>Close</text><title>Close
+* real</title></a>
+<text x='312' y='363' text-anchor='end' class='colType'>#</text>  <use id='nn' x='227' y='372' xlink:href='#nn'/><a xlink:href='#Candles.High'><text id='public.Candles.High' x='243' y='381'>High</text><title>High
+* real</title></a>
+<text x='312' y='378' text-anchor='end' class='colType'>#</text>  <use id='nn' x='227' y='387' xlink:href='#nn'/><a xlink:href='#Candles.Low'><text id='public.Candles.Low' x='243' y='396'>Low</text><title>Low
+* real</title></a>
+<text x='312' y='393' text-anchor='end' class='colType'>#</text>  <use id='nn' x='227' y='402' xlink:href='#nn'/><a xlink:href='#Candles.Open'><text id='public.Candles.Open' x='243' y='411'>Open</text><title>Open
+* real</title></a>
+<text x='312' y='408' text-anchor='end' class='colType'>#</text>  <use id='nn' x='227' y='417' xlink:href='#nn'/><a xlink:href='#Candles.Volume'><text id='public.Candles.Volume' x='243' y='426'>Volume</text><title>Volume
+* integer</title></a>
+<text x='312' y='423' text-anchor='end' class='colType'>#</text>
+<!-- == Table 'Batches' == -->
+<rect class='entity' x='45' y='278' width='105' height='120' rx='7' ry='7' style='stroke:none'/>
+<path d='M 45 304 L 45 285 Q 45 278 52 278 L 143 278 Q 150 278 150 285 L 150 304 L45 304 ' style='fill:url(#tbg_c8f5bf);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='45' y='278' width='105' height='120' rx='7' ry='7' style='fill:none;stroke:#9fce95'/>
+<line class='delim' x1='45' y1='304' x2='150' y2='304' style='stroke:#9fce95'/>
+<line class='delim' x1='60' y1='304' x2='60' y2='398' style='stroke:#9fce95'/>
+<line class='delim' x1='139' y1='304' x2='139' y2='398' style='stroke:#9fce95'/>
+<a xlink:href='#Batches'><text x='75' y='296'>Batches</text><title>Table public.Batches</title></a>
+  <use id='nn' x='47' y='312' xlink:href='#nn'/><a xlink:href='#Batches.BatchId'><use id='pk' x='47' y='311' xlink:href='#pk'/><title>Pk PK_Batches ( BatchId ) </title></a>
+<a xlink:href='#Batches.BatchId'><text id='public.Batches.BatchId' x='63' y='321' onmouseover="hghl(['Candles_FK_Candles_Batches_BatchId','public.Candles.BatchId'])" onmouseout="uhghl(['Candles_FK_Candles_Batches_BatchId','public.Candles.BatchId'])">BatchId</text><title>BatchId
+* serial</title></a>
+<a xlink:href='#Batches.BatchId'><use id='ref' x='139' y='311' xlink:href='#ref'/><title>Referred by Candles ( BatchId ) </title></a>
+  <use id='nn' x='47' y='327' xlink:href='#nn'/><a xlink:href='#Batches.BeginTime'><text id='public.Batches.BeginTime' x='63' y='336'>BeginTime</text><title>BeginTime
+* timestamp</title></a>
+<text x='147' y='333' text-anchor='end' class='colType'>d</text>  <a xlink:href='#Batches.EndTime'><text id='public.Batches.EndTime' x='63' y='351'>EndTime</text><title>EndTime
+timestamp</title></a>
+<text x='147' y='348' text-anchor='end' class='colType'>d</text>  <use id='nn' x='47' y='357' xlink:href='#nn'/><a xlink:href='#Batches.InstrumentId'><use id='idx' x='47' y='356' xlink:href='#idx'/><title>IX_Batches_InstrumentId ( InstrumentId ) </title></a>
+<a xlink:href='#Batches.InstrumentId'><text id='public.Batches.InstrumentId' x='63' y='366' onmouseover="hghl(['Batches_FK_Batches_Instruments_InstrumentId','public.Instruments.InstrumentId'])" onmouseout="uhghl(['Batches_FK_Batches_Instruments_InstrumentId','public.Instruments.InstrumentId'])">InstrumentId</text><title>InstrumentId
+* integer</title></a>
+<a xlink:href='#Batches.InstrumentId'><use id='fk' x='139' y='356' xlink:href='#fk'/><title>References Instruments ( InstrumentId ) </title></a>
+  <use id='nn' x='47' y='372' xlink:href='#nn'/><a xlink:href='#Batches.Interval'><text id='public.Batches.Interval' x='63' y='381'>Interval</text><title>Interval
+* interval</title></a>
+
+<!-- == Table 'Instruments' == -->
+<rect class='entity' x='120' y='68' width='105' height='90' rx='7' ry='7' style='stroke:none'/>
+<path d='M 120 94 L 120 75 Q 120 68 127 68 L 218 68 Q 225 68 225 75 L 225 94 L120 94 ' style='fill:url(#tbg_c8f5bf);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='120' y='68' width='105' height='90' rx='7' ry='7' style='fill:none;stroke:#9fce95'/>
+<line class='delim' x1='120' y1='94' x2='225' y2='94' style='stroke:#9fce95'/>
+<line class='delim' x1='135' y1='94' x2='135' y2='158' style='stroke:#9fce95'/>
+<line class='delim' x1='214' y1='94' x2='214' y2='158' style='stroke:#9fce95'/>
+<a xlink:href='#Instruments'><text x='140' y='86'>Instruments</text><title>Table public.Instruments</title></a>
+  <use id='nn' x='122' y='102' xlink:href='#nn'/><a xlink:href='#Instruments.InstrumentId'><use id='pk' x='122' y='101' xlink:href='#pk'/><title>Pk PK_Instruments ( InstrumentId ) </title></a>
+<a xlink:href='#Instruments.InstrumentId'><text id='public.Instruments.InstrumentId' x='138' y='111' onmouseover="hghl(['Batches_FK_Batches_Instruments_InstrumentId','public.Batches.InstrumentId','TrainedModels_FK_TrainedModels_Instruments_InstrumentId','public.TrainedModels.InstrumentId'])" onmouseout="uhghl(['Batches_FK_Batches_Instruments_InstrumentId','public.Batches.InstrumentId','TrainedModels_FK_TrainedModels_Instruments_InstrumentId','public.TrainedModels.InstrumentId'])">InstrumentId</text><title>InstrumentId
+* serial</title></a>
+<a xlink:href='#Instruments.InstrumentId'><use id='ref' x='214' y='101' xlink:href='#ref'/><title>Referred by Batches ( InstrumentId ) 
+Referred by TrainedModels ( InstrumentId ) </title></a>
+  <a xlink:href='#Instruments.Alias'><text id='public.Instruments.Alias' x='138' y='126'>Alias</text><title>Alias
+text</title></a>
+<text x='222' y='123' text-anchor='end' class='colType'>t</text>  <a xlink:href='#Instruments.DownloadAlias'><use id='idx' x='122' y='131' xlink:href='#idx'/><title>ix_download_alias ( DownloadAlias ) </title></a>
+<a xlink:href='#Instruments.DownloadAlias'><text id='public.Instruments.DownloadAlias' x='138' y='141'>DownloadAlias</text><title>DownloadAlias
+text</title></a>
+<text x='222' y='138' text-anchor='end' class='colType'>t</text>
 </g></svg></div>
 
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='Algorithms' onclick='window.scrollTo(235, 75);return false;' style='cursor:pointer;'><h4 class='card-title'>Table Algorithms</h4></a>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='Algorithms.AlgorithmId'>AlgorithmId</a></td>
+		<td> serial   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='Algorithms.Path'>Path</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='Algorithms.UserId'>UserId</a></td>
+		<td> integer   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='Algorithms.Description'>Description</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>PK&#95;Algorithms</td>
+		<td> ON AlgorithmId</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>IX&#95;Algorithms&#95;UserId</td>
+		<td> ON UserId</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_Algorithms_Users_UserId</td>
+		<td > ( UserId ) ref <a href='#Users'>Users</a> (UserId) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='Batches' onclick='window.scrollTo(60, 285);return false;' style='cursor:pointer;'><h4 class='card-title'>Table Batches</h4></a>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='Batches.BatchId'>BatchId</a></td>
+		<td> serial   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='Batches.BeginTime'>BeginTime</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='Batches.EndTime'>EndTime</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='Batches.InstrumentId'>InstrumentId</a></td>
+		<td> integer   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='Batches.Interval'>Interval</a></td>
+		<td> interval   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>PK&#95;Batches</td>
+		<td> ON BatchId</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>IX&#95;Batches&#95;InstrumentId</td>
+		<td> ON InstrumentId</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_Batches_Instruments_InstrumentId</td>
+		<td > ( InstrumentId ) ref <a href='#Instruments'>Instruments</a> (InstrumentId) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='Candles' onclick='window.scrollTo(60, 285);return false;' style='cursor:pointer;'><h4 class='card-title'>Table Candles</h4></a>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg></td>
+		<td><a name='Candles.CandleId'>CandleId</a></td>
+		<td> bigserial   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#unq'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='Candles.BatchId'>BatchId</a></td>
+		<td> integer   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#unq'/></svg></td>
+		<td><a name='Candles.BeginTime'>BeginTime</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='Candles.Close'>Close</a></td>
+		<td> real   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='Candles.High'>High</a></td>
+		<td> real   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='Candles.Low'>Low</a></td>
+		<td> real   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='Candles.Open'>Open</a></td>
+		<td> real   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='Candles.Volume'>Volume</a></td>
+		<td> integer   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>PK&#95;Candles</td>
+		<td> ON CandleId</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>IX&#95;Candles&#95;BatchId</td>
+		<td> ON BatchId</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#unq'/></svg></td><td>unq&#95;inside&#95;batch</td>
+		<td> ON BatchId&#44; BeginTime</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>ix&#95;time</td>
+		<td> ON BeginTime</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_Candles_Batches_BatchId</td>
+		<td > ( BatchId ) ref <a href='#Batches'>Batches</a> (BatchId) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='Instruments' onclick='window.scrollTo(60, 75);return false;' style='cursor:pointer;'><h4 class='card-title'>Table Instruments</h4></a>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='Instruments.InstrumentId'>InstrumentId</a></td>
+		<td> serial   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='Instruments.Alias'>Alias</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td>
+		<td><a name='Instruments.DownloadAlias'>DownloadAlias</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>PK&#95;Instruments</td>
+		<td> ON InstrumentId</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>ix&#95;download&#95;alias</td>
+		<td> ON DownloadAlias</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='TrainedModels' onclick='window.scrollTo(220, 255);return false;' style='cursor:pointer;'><h4 class='card-title'>Table TrainedModels</h4></a>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg></td>
+		<td><a name='TrainedModels.TrainedModelId'>TrainedModelId</a></td>
+		<td> serial   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='TrainedModels.AlgorithmId'>AlgorithmId</a></td>
+		<td> integer   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='TrainedModels.Data'>Data</a></td>
+		<td> jsonb   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='TrainedModels.InstrumentId'>InstrumentId</a></td>
+		<td> integer   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='TrainedModels.Parameters'>Parameters</a></td>
+		<td> jsonb   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='TrainedModels.Performance'>Performance</a></td>
+		<td> real   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='TrainedModels.TestBegin'>TestBegin</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='TrainedModels.TestEnd'>TestEnd</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='TrainedModels.TrainBegin'>TrainBegin</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='TrainedModels.TrainEnd'>TrainEnd</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>PK&#95;TrainedModels</td>
+		<td> ON TrainedModelId</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>IX&#95;TrainedModels&#95;AlgorithmId</td>
+		<td> ON AlgorithmId</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>IX&#95;TrainedModels&#95;InstrumentId</td>
+		<td> ON InstrumentId</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_TrainedModels_Algorithms_AlgorithmId</td>
+		<td > ( AlgorithmId ) ref <a href='#Algorithms'>Algorithms</a> (AlgorithmId) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_TrainedModels_Instruments_InstrumentId</td>
+		<td > ( InstrumentId ) ref <a href='#Instruments'>Instruments</a> (InstrumentId) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='Users' onclick='window.scrollTo(385, 75);return false;' style='cursor:pointer;'><h4 class='card-title'>Table Users</h4></a>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='Users.UserId'>UserId</a></td>
+		<td> serial   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='Users.Email'>Email</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='Users.Name'>Name</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='Users.Password'>Password</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>PK&#95;Users</td>
+		<td> ON UserId</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='__EFMigrationsHistory' onclick='window.scrollTo(385, 270);return false;' style='cursor:pointer;'><h4 class='card-title'>Table __EFMigrationsHistory</h4></a>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg></td>
+		<td><a name='__EFMigrationsHistory.MigrationId'>MigrationId</a></td>
+		<td> varchar&#40; 150 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='__EFMigrationsHistory.ProductVersion'>ProductVersion</a></td>
+		<td> varchar&#40; 32 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>PK&#95;&#95;&#95;EFMigrationsHistory</td>
+		<td> ON MigrationId</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
 
 <p align='right'><a href='https://www.dbschema.com' style='color:#aaa'>Powered by DbSchema</a></p></body></html>

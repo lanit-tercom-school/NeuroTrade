@@ -42,7 +42,8 @@ namespace CoreDownloader
         public void AddTask(DownloadingTask dTask, GetResponseDelegate callback)
         {
             string hash = GetMd5StringHash(dTask.url);
-            if (!hashUrls.Contains(hash))
+            //if (!hashUrls.Contains(hash))
+            if (true)    //because at the first time we could have not put the data
             {
                 lock (_lockHashes)
                 {

@@ -115,8 +115,22 @@ namespace NeuroTradeAPI.Controllers
 
         // DELETE api/v0/quotes/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id, string passphrase)
         {
+            if (passphrase != id.ToString() + ".salt.pepper") return Forbid("Wrong passphrase"); 
+            var context = new ApplicationContext();
+            var target = context.Batches.Find(id);
+            if (target == null) return NotFound("Batch not found");
+            try
+            {
+                context.Batches.Remove(target);
+                context.SaveChanges();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(string.Format("Caused an exception:\n{0}", e.ToString()));
+            }
         }
     }
     [Route("api/v0/[controller]")]

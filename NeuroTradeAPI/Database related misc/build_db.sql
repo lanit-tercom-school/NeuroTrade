@@ -51,7 +51,7 @@ CREATE INDEX IX_Batches_InstrumentId ON "public"."Batches" ( "InstrumentId" );
 CREATE TABLE "public"."Candles" ( 
 	"CandleId"           bigserial  NOT NULL,
 	"BatchId"            integer  NOT NULL,
-	"BeginTime"          timestamp  ,
+	"BeginTime"          timestamp  NOT NULL,
 	"Close"              real  NOT NULL,
 	"High"               real  NOT NULL,
 	"Low"                real  NOT NULL,
