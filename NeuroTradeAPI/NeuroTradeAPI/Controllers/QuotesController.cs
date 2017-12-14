@@ -24,7 +24,8 @@ namespace NeuroTradeAPI.Controllers
                 batch => batch.InstrumentId, (instr, batch) => new {instr, Batch = batch})
                 .OrderBy(arg => arg.Batch.BeginTime)
                 .ThenBy(arg => arg.Batch.BatchId)
-                .GroupBy(arg => arg.Batch.InstrumentId);
+                .GroupBy(arg => arg.Batch.InstrumentId)
+                .ToList();
             
             return Json(from _instrum in instr_bacth select new Dictionary<string, object>()
                 {
@@ -79,6 +80,7 @@ namespace NeuroTradeAPI.Controllers
                 var targetInst = context.Instruments.FirstOrDefault(_instr => _instr.InstrumentId == target.InstrumentId);
                 var candles = context.Candles.Where(cndl => cndl.BatchId == target.BatchId &&
                                                             cndl.BeginTime >= dtFrom && cndl.BeginTime < dtTo)
+                                             .OrderBy(cndl => cndl.BeginTime)
                                              .ToList();
                 if (!candles.Any())
                     return NoContent();
