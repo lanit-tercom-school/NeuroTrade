@@ -20,19 +20,19 @@ namespace NeuroTradeAPI.Controllers
         {
             var context = new ApplicationContext();
 //            var instrums = context.Batches.GroupBy(batch => batch.Instrument.InstrumentId);
-            var instrums2 = context.Instruments.Join(context.Batches, instr => instr.InstrumentId,
+            var instr_bacth = context.Instruments.Join(context.Batches, instr => instr.InstrumentId,
                 batch => batch.InstrumentId, (instr, batch) => new {instr, Batch = batch})
                 .OrderBy(arg => arg.Batch.BeginTime)
                 .ThenBy(arg => arg.Batch.BatchId)
-                .GroupBy(arg => arg.instr.Alias);
-            return Json(from inst in instrums2
-                select new Dictionary<string, object>()
+                .GroupBy(arg => arg.Batch.InstrumentId);
+            
+            return Json(from _instrum in instr_bacth select new Dictionary<string, object>()
                 {
-                    {"Instrument", inst.Key},
-                    {"Batches", from b in inst select b.Batch.toDict()}
+                    {"Instrument", context.Instruments.Find(_instrum.Key).toDict()},
+                    {"Batches", from _batch in _instrum select _batch.Batch.toDict()}
                 });
         }
-
+    
         // GET api/v0/quotes/filter?param=...
         [Route("filter")]
         public ActionResult Filter(string instrument, string batch, string from, string to)
