@@ -3,16 +3,53 @@
     Текст ошибки
   </div>
   <h2>Авторизация</h2>
-  <form class="signInForm">
-      <input type="email" #userEmail class="form-control incorrect-input" placeholder="Адрес электронной почты" required autofocus>
-      <input type="password" #userPassword class="form-control" placeholder="Пароль" required>
-      <div class="checkbox rememberCheckbox">
-          <label>
-              <input type="checkbox" value="remember-me"> Запомнить меня
-          </label>
-      </div>
-      <button class="btn btn-lg btn-success btn-block signInButton" type="submit"
-              (click)="Authorize(userEmail.value, userPassword.value)">Войти</button>
+  <form class="signInForm" [formGroup]="form" (ngSubmit)="Authorize()">
+
+    <input
+      type="email"
+      #userEmail
+      class="form-control incorrect-input"
+      placeholder="Адрес электронной почты"
+      autofocus
+      formControlName="email"
+      [ngClass]="{'is-invalid': form.get('email').invalid && form.get('email').touched && form.get('email').dirty}"
+    >
+    <span
+      class="form-help-text"
+      *ngIf="form.get('email').invalid && form.get('email').touched && form.get('email').dirty"
+      [ngClass]="{'text-danger': form.get('email').invalid && form.get('email').touched && form.get('email').dirty}"
+    >
+        <span *ngIf="form.get('email')['errors']['required']">Это поле не может быть пустым. </span>
+        <span *ngIf="form.get('email')['errors']['email'] && !form.get('email')['errors']['required']">
+          Введите корректный email. </span>
+      </span>
+
+    <input
+      type="password"
+      #userPassword
+      class="form-control"
+      placeholder="Пароль"
+      formControlName="password"
+      [ngClass]="{'is-invalid': form.get('password').invalid && form.get('password').touched && form.get('password').dirty}"
+    >
+    <span
+      class="form-help-text"
+      *ngIf="form.get('password').invalid && form.get('password').touched && form.get('password').dirty"
+      [ngClass]="{'text-danger': form.get('password').invalid && form.get('password').touched && form.get('password').dirty}"
+    >
+      Это поле не может быть пустым. </span>
+
+    <div class="checkbox rememberCheckbox">
+      <label>
+        <input type="checkbox" value="remember-me"> Запомнить меня
+      </label>
+    </div>
+    <button
+      class="btn btn-lg btn-success btn-block signInButton"
+      type="submit"
+      [disabled]="form.invalid"
+    >Войти
+    </button>
   </form>
-  <p class = "bottomText" align = "center">Еще не зарегистрированы? <a routerLink="/sign-up">Регистрация</a></p>
+  <p class="bottomText" align="center">Еще не зарегистрированы? <a routerLink="/sign-up">Регистрация</a></p>
 </div>
