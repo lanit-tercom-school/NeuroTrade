@@ -1,12 +1,91 @@
 <div class="container column">
     <h2>Регистрация</h2>
-    <form class="signInForm">
-      <input #name class="form-control nameInput" type="text" placeholder="Имя" />
-      <input #surname class="form-control nameInput" type="text" placeholder="Фамилия" />
-      <input #email type="email" class="form-control" placeholder="Адрес электронной почты" required autofocus>
-      <input #password type="password" class="form-control" placeholder="Пароль" required>
-      <input #passwordConfirmation type="password" class="form-control" placeholder="Повторите пароль" required>
-      <button class="btn btn-lg btn-success btn-block" type="submit" (click)="Register(name.value, surname.value, email.value, password.value, passwordConfirmation.value)">Зарегистрироваться</button>
+    <form class="signInForm" [formGroup]="form" (ngSubmit)="Register(name.value, surname.value, email.value, password.value, passwordConfirmation.value)">
+      <div formGroupName="person">
+        <input
+            #name
+            class="form-control nameInput"
+            type="text"
+            placeholder="Имя"
+            formControlName="name"
+            [ngClass]="{'is-invalid': form.get('person.name').invalid && form.get('person.name').dirty && form.get('person.name').touched}"
+        />
+        <input
+          #surname
+          class="form-control nameInput"
+          type="text"
+          placeholder="Фамилия"
+          formControlName="surname"
+          [ngClass]="{'is-invalid': form.get('person.surname').invalid && form.get('person.surname').dirty && form.get('person.surname').touched}"
+        />
+      </div>
+      <span
+        class="form-help-text"
+        *ngIf="form.get('person').invalid && form.get('person').touched && (form.get('person.name').dirty && form.get('person.surname').dirty)"
+        [ngClass]="{'text-danger': form.get('person').invalid && form.get('person').dirty && form.get('person').touched}"
+      >Поля Имя и Фамилия должны быть заполнены</span>
+      <div>
+        <input
+          #email
+          type="email"
+          class="form-control"
+          placeholder="Адрес электронной почты"
+          autofocus
+          formControlName="email"
+          [ngClass]="{'is-invalid': form.get('email').invalid && form.get('email').touched && form.get('email').dirty}"
+        >
+        <span
+          class="form-help-text"
+          *ngIf="form.get('email').invalid && form.get('email').touched && form.get('email').dirty"
+          [ngClass]="{'text-danger': form.get('email').invalid && form.get('email').touched && form.get('email').dirty}"
+        >
+          <span *ngIf="form.get('email')['errors']['required']">Это поле не может быть пустым. </span>
+          <span *ngIf="form.get('email')['errors']['email'] && !form.get('email')['errors']['required']">
+            Введите корректный email.
+          </span>
+        </span>
+      </div>
+      <div formGroupName="passGr">
+        <input
+          #password
+          type="password"
+          class="form-control"
+          placeholder="Пароль"
+          formControlName="password"
+          [ngClass]="{'is-invalid': form.get('passGr.password').invalid && form.get('passGr.password').touched && form.get('passGr.password').dirty}"
+        >
+        <span
+          class="form-help-text"
+          *ngIf="form.get('passGr.password').invalid && form.get('passGr.password').touched && form.get('passGr.password').dirty"
+          [ngClass]="{'text-danger': form.get('passGr.password').invalid && form.get('passGr.password').touched && form.get('passGr.password').dirty}"
+        >
+          <span *ngIf="form.get('passGr.password')['errors']['required']">Это поле не может быть пустым. </span>
+          <span
+            *ngIf="form.get('passGr.password')['errors']['minlength'] && !form.get('passGr.password')['errors']['required']">
+            Пароль должен содержать не менее 7 символов. </span>
+          <span
+          *ngIf="form.get('passGr.password')['errors']['hasNumber'] && !form.get('passGr.password')['errors']['required']">
+          Пароль должен содержать хотя бы одну цифру.</span>
+        </span>
+
+        <input
+          #passwordConfirmation
+          type="password"
+          class="form-control"
+          placeholder="Повторите пароль"
+          formControlName="passConfirm"
+          [ngClass]="{'is-invalid': form.get('passGr').invalid && form.get('passGr.passConfirm').touched
+          && form.get('passGr.passConfirm').dirty }"
+        >
+        <span
+          class="form-help-text"
+          *ngIf="form.get('passGr').invalid && form.get('passGr.passConfirm').touched && form.get('passGr.passConfirm').dirty"
+          [ngClass]="{'text-danger': form.get('passGr').invalid && form.get('passGr.passConfirm').touched && form.get('passGr.passConfirm').dirty}"
+        >
+          <span *ngIf="form.get('passGr')['errors']['areNotEqual']">Пароли должны совпадать.</span>
+        </span>
+      </div>
+      <button class="btn btn-lg btn-success btn-block" type="submit" [disabled]="form.invalid">Зарегистрироваться</button>
     </form>
   <p class="bottomText" align = "center">Уже зарегистрированы? <a routerLink="/sign-in">Войти</a></p>
 </div>
