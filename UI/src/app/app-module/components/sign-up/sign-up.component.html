@@ -41,8 +41,8 @@
         >
           <span *ngIf="form.get('email')['errors']['required']">Это поле не может быть пустым. </span>
           <span *ngIf="form.get('email')['errors']['email'] && !form.get('email')['errors']['required']">
-            Введите корректный email.
-          </span>
+            Введите корректный email.</span>
+          <span *ngIf="form.get('email')['errors']['forbiddenEmail']"> Такой email уже занят.</span>
         </span>
       </div>
       <div formGroupName="passGr">

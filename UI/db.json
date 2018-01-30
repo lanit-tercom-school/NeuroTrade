@@ -2,9 +2,9 @@
   "users": [
     {
       "id": 1,
-      "name": "Владимир",
+      "name": "Владимир Иванов",
       "email": "student@spbu.ru",
-      "password": "qwertyqwerty",
+      "password": "qwertyqwerty1",
       "token": "MM"
     }
   ]

@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { SignUpUser } from '../../../models/user/sign-up-user';
 import {AuthService} from '../../../services/auth.service';
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
+import { UserService } from '../../../services/user.service';
+import {CurrentUser} from '../../../models/user/current-user';
 
 @Component({
   selector: 'app-sign-up',
@@ -12,7 +14,10 @@ import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, 
 export class SignUpComponent implements OnInit {
 
   form: FormGroup;
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
     //this.message = new Message('danger', '');
@@ -21,7 +26,8 @@ export class SignUpComponent implements OnInit {
         'name': new FormControl(null,[Validators.required,this.personValidator]),
         'surname': new FormControl(null,[Validators.required,this.personValidator])
       }),
-      'email': new FormControl(null, [Validators.required, Validators.email]),
+      'email': new FormControl(null, [Validators.required, Validators.email],
+        this.forbiddenEmail.bind(this)),
       'passGr': new FormGroup({
         'password': new FormControl(null, [Validators.required, Validators.minLength(7),this.passwordValidator]),
         'passConfirm': new FormControl(null)
@@ -65,6 +71,19 @@ export class SignUpComponent implements OnInit {
     }
   }
 
+  forbiddenEmail(control: FormControl): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.userService.getUserByEmail(control.value)
+        .subscribe((user: CurrentUser) => {
+          if (user) {
+            resolve({'forbiddenEmail': true})
+          } else {
+            resolve(null);
+          }
+        })
+    });
+  }
+
   isRegDataValid(user: SignUpUser, passwordConfirmation: string): boolean {
 
     if (user.password !== passwordConfirmation) {
@@ -76,7 +95,6 @@ export class SignUpComponent implements OnInit {
   }
 
   Register(name: string, surname: string, email: string, password: string, passwordConfirmation: string) {
-    console.log(this.form);
 
     const user: SignUpUser = {
       name: name + ' ' + surname,
