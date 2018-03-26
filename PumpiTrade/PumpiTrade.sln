@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaData", "MetaData\MetaData.csproj", "{DB43F393-DE00-426B-9F95-AFC9770274EB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tester", "Tester\Tester.csproj", "{01608D8D-B60B-4F57-A811-481AB4FA66FE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0D835446-5C4F-4757-B57E-B59768997CA5} = {0D835446-5C4F-4757-B57E-B59768997CA5}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoexService", "MoexService\MoexService.csproj", "{12AA917C-8FDC-4023-97DC-11832580A1D6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeHistoryDataService", "TradeHistoryDataService\TradeHistoryDataService.csproj", "{B2FA4BC6-E2AD-4972-ACBD-0EF9B78F23B5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeDataLoaderService", "TradeDataLoaderService\TradeDataLoaderService.csproj", "{0D835446-5C4F-4757-B57E-B59768997CA5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{12AA917C-8FDC-4023-97DC-11832580A1D6} = {12AA917C-8FDC-4023-97DC-11832580A1D6}
+		{DB43F393-DE00-426B-9F95-AFC9770274EB} = {DB43F393-DE00-426B-9F95-AFC9770274EB}
+		{B2FA4BC6-E2AD-4972-ACBD-0EF9B78F23B5} = {B2FA4BC6-E2AD-4972-ACBD-0EF9B78F23B5}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB43F393-DE00-426B-9F95-AFC9770274EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB43F393-DE00-426B-9F95-AFC9770274EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB43F393-DE00-426B-9F95-AFC9770274EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB43F393-DE00-426B-9F95-AFC9770274EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01608D8D-B60B-4F57-A811-481AB4FA66FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01608D8D-B60B-4F57-A811-481AB4FA66FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01608D8D-B60B-4F57-A811-481AB4FA66FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01608D8D-B60B-4F57-A811-481AB4FA66FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12AA917C-8FDC-4023-97DC-11832580A1D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12AA917C-8FDC-4023-97DC-11832580A1D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12AA917C-8FDC-4023-97DC-11832580A1D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12AA917C-8FDC-4023-97DC-11832580A1D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2FA4BC6-E2AD-4972-ACBD-0EF9B78F23B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2FA4BC6-E2AD-4972-ACBD-0EF9B78F23B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2FA4BC6-E2AD-4972-ACBD-0EF9B78F23B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2FA4BC6-E2AD-4972-ACBD-0EF9B78F23B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D835446-5C4F-4757-B57E-B59768997CA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D835446-5C4F-4757-B57E-B59768997CA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D835446-5C4F-4757-B57E-B59768997CA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D835446-5C4F-4757-B57E-B59768997CA5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9831F6C1-42F7-4D83-8BB8-2AA610CEB1F9}
+	EndGlobalSection
+EndGlobal

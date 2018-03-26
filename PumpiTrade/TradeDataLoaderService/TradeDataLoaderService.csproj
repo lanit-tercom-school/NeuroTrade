@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\bin\Debug\netcoreapp2.0\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NLog" Version="4.5.0-rc07" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MetaData\MetaData.csproj" />
+    <ProjectReference Include="..\MoexService\MoexService.csproj" />
+    <ProjectReference Include="..\TradeHistoryDataService\TradeHistoryDataService.csproj" />
+  </ItemGroup>
+
+</Project>
